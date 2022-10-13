@@ -1,0 +1,134 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}AirSyst - Сервисный центр{% endblock %}
+{% block content %}
+<div class="bread-crumbs wrap">
+    <a href="/" class="bread-crumbs__item">Home</a>
+    <div class="bread-crumbs__item">About the service centr</div>
+</div>
+<section class="service wrap">
+    <h1 class="title">About the service centr</h1>
+    <div class="about__top">
+        <h4 class="about__text">
+            <p>AIRSYST was created by technicians who involved in the overhaul of screw and centrifugal compressors of
+                well
+                known brands such as Atlas Copco, Ingersoll Rand, Kaeser, Gardner Denver, Compair, BOGE, Dalgakiran and
+                many
+                others. Over the years, our specialists have gained vast experience in the selection of compressed air
+                equipment; oil flooded airend repair services for GHH RAND, ATLAS COPCO, ROTORCOMP, AERZEN, FINI
+                COMPRESSOR,
+                QUINCY, etc.</p>
+            <p>We have started our business as a small service center for the repair and maintenance of screw
+                compressors
+                from various manufacturers. Gradually, year after year, our engineers have been trained at the
+                manufacturing
+                plants (Hanwha Techwinn (South Korea), Gardner Denver (Finland, Germany), Atlas Copco (Belgium, Turkey),
+                Sullair (Ireland). In last 10 years, our specialists have serviced more than 300 units of oil-lubricated
+                and
+                oil-free compressors and blowers; about 40 overhauls were carried out with the replacement of stages on
+                Atlas Copco oil-free compressors of the ZT/ZR/ZE/ZH series;our service engineers have spent more than
+                6000
+                hours while repairing and rebuilding dry type compressors.</p>
+            <p>Of course, a good repair is impossible to carry out without quality spare parts. Currently, there are 2
+                options for servicing oil-free compressors: <br>
+                - service the compressor and air treatment systems at official dealers <br>
+                Or <br>
+                - contact our company for re-engineering</p>
+            <p>If the equipment is still under warranty, it makes sense to work with an official representative. If the
+                compressor warranty is over, then the best option would be to work with a company that offers
+                re-engineering.</p>
+        </h4>
+        <img class="lazyload" data-src="{% static 'img/images/photo_2022-03-12_13-55-38 1.jpg' %}" alt="">
+    </div>
+    <h4 class="about__text">
+        <p>Advantages of re-engineering from the AIRSYST group of companies: <br>
+            - Reducing the costs of the repair and maintenance of Atlas Copco ZT/ZR/ZE/ZH series compressors (savings up
+            to
+            70% comparing to genuine spare parts) <br>
+            - We provide all the genuine equivalent spare parts for the Atlas Copco oil free compressors (ZT/ZR/ZE/ZH
+            series).Our non genuine spare and replacement parts are manufactured by (RIEM) Italy or AIRTEC (England)
+            with a
+            24-month warranty. <br>
+            - Optimal delivery time for spare parts and components (maximum delivery time up to 30 days) <br>
+            - A wide range of spare parts for Atlas Copco ZT/ZR/ZE/ZH series compressors from the stock. <br>
+            - Airsyst can provide a stock management system to its customers.We can stock the service parts in our
+            warehouses on behalf of the customer. <br>
+            - We provide 24 months warranty for the parts and the labor supplied from us. The warranty can be extended
+            up
+            on(up to 60 months*). <br>
+            - On site Engineer support maximum 3 days** <br>
+            - Technical support 24/7*** <br>
+            - Extended service / maintenance contracts. <br>
+            *-Applies for extended warranty contract <br>
+            **-Applies for service contract <br>
+            ***-Applies for technical support services</p>
+    </h4>
+    <h4 class="about__text">
+        <p><b>Our partners for oil-free compressors:</b></p>
+        <p><img class="lazyload" data-src="{% static 'img/images/riemoitaly.jpg' %}" alt=""></p>
+        <p>RIEM Italy was established in Rome, Italy, back in 1976, by Mr. Francesco Russo who was specialized in
+            repairing and overhauling air compressors.</p>
+    </h4>
+    <h4 class="about__text">
+        <p><img class="lazyload" data-src="{% static 'img/images/ztechnique.jpg' %}" alt=""></p>
+        <p>Since 1987 our company has specialized in oil free compressed air service.</p>
+
+    </h4>
+    <div class="service__imgs">
+        <img class="lazyload" data-src="{% static 'img/images/photo_2022-03-12_13-55-39 1.jpg' %}" alt="">
+        <img class="lazyload" data-src="{% static 'img/images/photo_2022-03-12_13-55-54 1.jpg' %}" alt="">
+    </div>
+</section>
+{% if projects %}
+<section class="projects wrap">
+    <h1 class="title">OUR PROJECTS</h1>
+    <div class="sort-select">
+        <div class="custom-select">
+            Sorting: <span>All projects</span>
+        </div>
+        <select id="sort">
+            <option selected disabled>Select a filter</option>
+            <option value="ALL">
+                All projects
+            </option>
+            <option value="REPAIR">
+                Service
+            </option>
+            <option value="SELL">
+                Sales
+            </option>
+        </select>
+    </div>
+    <div class="projects__items">
+        {% for project in projects %}
+        <div class="projects__item">
+            <div class="projects__preview">
+                <!-- get proj_image -->
+                <img class="lazyload" data-src="{{ proj_image.image.url }}" alt="">
+                <img class="lazyload" data-src="{{ project.brand.logo.url }}" class="projects__manufacturer">
+            </div>
+            <div class="projects__content">
+                <div class="projects__date">
+                    <div class="projects__day">{{ project.date }}</div>
+                    <div class="project__small-date">
+                        <div class="projects__month">{{ project.date }}</div>
+                        <div class="projects__year">{{ project.date }}</div>
+                    </div>
+                </div>
+                <h3 class="projects__customer">{{ project.company.name }}</h3>
+                <h3 class="projects__name">
+                    {{ project.title }}
+                </h3>
+                <h4 class="projects__descr">
+                    {{ project.description }}
+                </h4>
+                <a href="{% url 'project_by_id' project.pk %}" class="btn">Detail</a>
+            </div>
+        </div>
+
+        {% endfor %}
+        <a href="{% url 'projects' %}" class="btn">Ail projects</a>
+    </div>
+</section>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,12 @@
+venv
+.env
+__pycache__
+
+todo
+db.sqlite3
+
+
+
+static
+static_production
+media

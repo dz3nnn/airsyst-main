@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}AirSyst - {{ category.name }}{% endblock %}
+{% block content %}
+<div class="bread-crumbs wrap">
+    <a href="/" class="bread-crumbs__item">Home</a>
+    <a href="{% url 'products-page' %}" class="bread-crumbs__item">Products</a>
+    <div class="bread-crumbs__item">{{ category.name }}</div>
+</div>
+<section class="air wrap">
+    <h1 class="title">{{ category.name }}</h1>
+    {% if sub_categories %}
+    <div class="air__items">
+        {% for sub_category in sub_categories %}
+        <a href="#" class="air__item">
+            {% if sub_category.image %}
+            <img class="lazyload" data-src="{{ sub_category.image.url }}" alt="">
+            {% endif %}
+            <h2 class="air__name">{{ sub_category.name }}</h2>
+        </a>
+        {% endfor %}
+    </div>
+    {% endif %}
+</section>
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block title %}
+{% endblock %}
+{% block content %}
+<section class="error wrap">
+    <div class="error__code">500</div>
+    <div class="error__message">
+        {% translate "Server error!" %}
+    </div>
+    <a href="/" class="btn">{% translate "Go home" %}</a>
+</section>
+{% endblock%}

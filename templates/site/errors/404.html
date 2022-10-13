@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block title %}
+{% endblock %}
+{% block content %}
+<section class="error wrap">
+    <div class="error__code">404</div>
+    <div class="error__message">
+        {% translate "Page not found!" %}
+    </div>
+    <a href="/" class="btn">{% translate "Go home" %}</a>
+</section>
+{% endblock%}

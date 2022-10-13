@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}AirSyst - Корзина{% endblock %}
+{% block content %}
+<section class="shop-cart wrap">
+    <h1 class="title">Корзина</h1>
+    {% if basket_items %}
+    <div class="shop-cart__content">
+        <div class="shop-cart__head">
+            <div class="filter__checkbox" name="select-all">
+                <div class="filter__check">
+                    <img class="lazyload" data-src="{% static 'img/icons/check.svg' %}">
+                </div>
+                <span>Выбрать все</span>
+            </div>
+            <div class="shop-cart__delete-all">
+                <img class="lazyload" data-src="{% static 'img/icons/delete.svg' %}">
+                Удалить выбранное
+            </div>
+        </div>
+        <div class="shop-cart__body">
+            <div class="shop-cart__body__content">
+                <div class="shop-cart__header">
+                    <div class="shop-cart__col"></div>
+                    <div class="shop-cart__col"></div>
+                    <div class="shop-cart__col">Наименование</div>
+                    <div class="shop-cart__col">Цена</div>
+                    <div class="shop-cart__col">К-во</div>
+                    <div class="shop-cart__col">Стоимость</div>
+                    <div class="shop-cart__col"></div>
+                </div>
+                <div class="shop-cart__items">
+                    {% for basket_item in basket_items %}
+                    <div class="shop-cart__item" product-id="{{ basket_item.equip_obj.pk }}">
+                        <div class=" shop-cart__col select">
+                            <div class="filter__checkbox">
+                                <div class="filter__check">
+                                    <img class="lazyload" data-src="{% static 'img/icons/check.svg' %}">
+                                </div>
+                            </div>
+                        </div>
+                        <a href="#" class="shop-cart__col shop-cart__img">
+                            <img class="lazyload" data-src="{{ basket_item.equip_obj.pk }}" alt="">
+                        </a>
+                        <div class="shop-cart__col shop-cart__name">{{ basket_item.equip_obj.name }}</div>
+                        <div class="shop-cart__col shop-cart__price">{{ basket_item.equip_obj.calc_price }} BYN</div>
+                        <div class="shop-cart__col shop-cart__count">
+                            <div class="catalog__count">
+                                <div class="catalog__minus">-</div>
+                                <input id="catalog-count" type="text" value="{{ basket_item.count }}">
+                                <div class="catalog__plus">+</div>
+                            </div>
+                        </div>
+                        <div class="shop-cart__col shop-cart__full-price">{{ basket_item.full_price }} BYN</div>
+                        <div class="shop-cart__col shop-cart__delete">
+                            <img class="lazyload" data-src="{% static 'img/icons/delete.svg' %}" alt="">
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="shop-cart__form">
+                <div class="shop-cart__sub-title">
+                    Ваш заказ
+                </div>
+                <div class="shop-cart__form__item shop-cart__form__count">
+                    <div class="shop-cart__form__text">
+                        Выбрано товаров:
+                    </div>
+                    <div class="shop-cart__form__value">
+                        {{ basket_items }} шт.
+                    </div>
+                </div>
+                <div class="shop-cart__form__item shop-cart__form__wt">
+                    <div class="shop-cart__form__text">
+                        Вес заказа:
+                    </div>
+                    <div class="shop-cart__form__value">
+                        {{ basket_items }} кг.
+                    </div>
+                </div>
+                <div class="shop-cart__form__item shop-cart__form__total">
+                    <div class="shop-cart__form__text">
+                        Итого:
+                    </div>
+                    <div class="shop-cart__form__value">
+                        {{ basket_items }} BYN
+                    </div>
+                </div>
+                <a href="#" class="btn">Оформить заказ</a>
+            </div>
+        </div>
+    </div>
+    {% else %}
+    <div class="shop-cart__empty">
+        Корзина пуста
+    </div>
+    {% endif %}
+</section>
+{% endblock %}

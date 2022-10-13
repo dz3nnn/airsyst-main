@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}AirSyst - SPARE PARTS FOR COMPRESSORS{% endblock %}
+{% block content %}
+<div class="bread-crumbs wrap">
+    <a href="/" class="bread-crumbs__item">Home</a>
+    <div class="bread-crumbs__item">Spare parts</div>
+</div>
+<section class="spare-parts wrap">
+    <h1 class="title">SPARE PARTS FOR COMPRESSORS</h1>
+    {% if all_brands %}
+    <div class="spare-parts__items">
+        {% for brand in all_brands %}
+        <a href="#" class="spare-parts__item">
+            {% if brand.logo %}<img class="lazyload" data-src="{{ brand.logo.url }}" alt="">{% endif %}
+        </a>
+        {% endfor %}
+    </div>
+    {% endif %}
+</section>
+{% include "site/sections/feedback.html" %}
+{% endblock %}
+
+{% block in_div_modal %}
+<div class="success">
+    <div class="close">
+        <img class="lazyload" data-src="{% static 'img/icons/close.svg' %}" alt="">
+    </div>
+    <img class="lazyload" data-src="{% static 'img/icons/success.svg' %}" alt="">
+    <div class="success__text">
+        Your request has been received
+    </div>
+</div>
+{% endblock %}

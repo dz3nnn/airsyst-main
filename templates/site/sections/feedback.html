@@ -1,0 +1,18 @@
+{% load static %}
+<section class="feedback wrap">
+    <form>
+        {% csrf_token %}
+        <h2 class="feedback__title">Feedback</h2>
+        <input type="text" name="name" placeholder="Name">
+        <input type="phone" name="phone" placeholder="Phone">
+        <input type="text" name="mail" placeholder="Email">
+        <textarea name="message" placeholder="Your message"></textarea>
+        <div class="feedback__checkbox">
+            <div class="feedback__check">
+                <img class="lazyload" data-src="{% static 'img/icons/check.svg' %}">
+            </div>
+            <span>I accept the privacy policy</span>
+        </div>
+        <input type="submit" value="Send" class="btn">
+    </form>
+</section>

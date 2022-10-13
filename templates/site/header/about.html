@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}AirSyst - Company{% endblock %}
+{% block content %}
+<div class="bread-crumbs wrap">
+    <a href="/" class="bread-crumbs__item">Home</a>
+    <div class="bread-crumbs__item">Company</div>
+</div>
+<section class="about wrap">
+    <h1 class="title">Company</h1>
+    <div class="about__content">
+        <div class="about__top">
+            <div class="about__text">
+                <h3>
+                    <p> <b>AIRSYST</b> was created by technicians involved in the overhaul of screw and centrifugal
+                        compressors
+                        from manufacturers such as Atlas Copco, Ingersoll Rand, Kaeser, Gardner Denver, Compair, BOGE,
+                        Dalgakiran and many others. Over the years, our specialists have gained vast experience in the
+                        selection of compressor equipment; we provide repair and overhaul service for GHH RAND, ATLAS
+                        COPCO, ROTORCOMP, AERZEN, FINI COMPRESSOR, QUINCY airends as well as supply of consumables and
+                        spare parts. </p>
+                    <p> The management team pays great attention to the development of other industrial areas such as:
+                    </p>
+                    <p> - Supply of nitrogen generators
+                        - Supply of oxygen generators
+                        - Supply of air separation plants
+                        - Supply of heat pumps
+                    </p>
+                    <p> The Airsyst group is the official dealer of main and well known premium brands such as : BOGE
+                        Kompressoren (Germany); HERTZ (Germany); IDEAL MAKINA (Turkey); FILSAN (Turkey); DENAIR (China);
+                        ATS (Italy); SOTRAS (Italy).</p>
+
+                </h3>
+            </div>
+            <img class="lazyload" data-src="{% static 'img/images/worker.jpg' %}" alt="">
+        </div>
+        <div class="about__text">
+            <h3>
+                <p>In 2022, Airsyst opened its branches in the European Union (Tallinn, Estonia), the Dublin, Ireland
+                    and
+                    the Russian Federation (Smolensk).
+                </p>
+                <p>Our goal: To become the largest supplier of industrial equipment spare parts and services in Eurasia,
+                    North and South America and Africa. </p>
+                <p>Our mission: To provide the best service, supply the best equipment in terms of price / quality
+                    ratio,
+                    affordable and high-quality spare parts and consumables. </p>
+                <p>Provide an opportunity to supply any spare parts for our customers from the stock, or with a maximum
+                    delivery of up to 5 working days. </p>
+                <p>The team of Airsyst group companies, offers you and your company to evaluate the highest
+                    qualification
+                    of our specialists for solving any problems in the supply of equipment or spare parts, repair or
+                    service. </p>
+
+            </h3>
+        </div>
+        <img class="lazyload" data-src="{% static 'img/icons/about-bg.svg' %}" class="about__bg">
+    </div>
+</section>
+{% comment %} <section class="our-team wrap">
+    <h2 class="title">Our company</h2>
+    <div class="our-team__items">
+        {% for worker in workers %}
+        <div class="our-team__item" worker-id="{{ worker.pk }}">
+            {% if worker.image %}
+            <img class="lazyload" data-src="{{ worker.image.url }}" alt="">
+            {% endif %}
+            <h3 class="our-team__name">{{ worker.position }}</h3>
+        </div>
+        {% endfor %}
+    </div>
+</section> {% endcomment %}
+{% endblock %}
+{% comment %} 
+{% block in_div_modal %}
+{% for worker in workers %}
+<div class="team-form" worker-id="{{ worker.pk }}">
+    <div class="close">
+        <img class="lazyload" data-src="{% static 'img/icons/close.svg' %}" alt="">
+    </div>
+    <div class="team-form__content">
+        {% if worker.image %}
+        <img class="lazyload" data-src="{{ worker.image.url }}" alt="">
+        {% endif %}
+        <div class="team-form__text">
+            <div class="team-form__spec">
+                {{ worker.position }}
+            </div>
+            <div class="team-form__name">
+                {{ worker.name }}
+            </div>
+            <div class="team-form__descr">
+                {{ worker.content|safe }}
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}
+{% endblock %} {% endcomment %}
