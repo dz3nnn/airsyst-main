@@ -6,6 +6,7 @@ from django.conf import settings
 from django.contrib.sitemaps.views import sitemap
 
 urlpatterns = [
+    path('tinymce/', include('tinymce.urls')),
     path('admin/', admin.site.urls),
     path('', include('main.urls')),
 

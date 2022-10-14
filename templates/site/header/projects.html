@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}AirSyst - Our projects{% endblock %}
+{% block content %}
+<div class="bread-crumbs wrap">
+    <a href="/" class="bread-crumbs__item">Home</a>
+    <div class="bread-crumbs__item">Our projects</div>
+</div>
+<section class="projects wrap">
+    <h1 class="title">OUR PROJECTS</h1>
+    <div class="sort-select">
+        <div class="custom-select">
+            Sorting: <span>All projects</span>
+        </div>
+        <select id="sort">
+            <option selected disabled>Select a filter</option>
+            <option value="ALL">
+                All projects
+            </option>
+            <option value="REPAIR">
+                Service
+            </option>
+            <option value="SELL">
+                Sales
+            </option>
+        </select>
+    </div>
+    <div class="projects__items">
+        {% for project in projects %}
+        <div class="projects__item">
+            <div class="projects__preview">
+                {# get_images_for_project #}
+                <img class="lazyload" data-src="{{ proj_image.image.url }}" alt="">
+                <img class="lazyload projects__manufacturer" data-src="{{ project.brand.logo.url }}">
+            </div>
+            <div class="projects__content">
+                <div class="projects__date">
+                    <div class="projects__day">{{ project.date }}</div>
+                    <div class="project__small-date">
+                        <div class="projects__month">{{ project.date }}</div>
+                        <div class="projects__year">{{ project.date }}</div>
+                    </div>
+                </div>
+                <h3 class="projects__customer">{{ project.company.name }}</h3>
+                <h3 class="projects__name">
+                    {{ project.title }}
+                </h3>
+                <h4 class="projects__descr">
+                    {{ project.description }}
+                </h4>
+                <a href="#" class="btn">Detail</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}

@@ -20,6 +20,10 @@ def about_page(request):
     return render(request, 'site/header/about.html')
 
 
+def projects_page(request):
+    return render(request, 'site/header/projects.html')
+
+
 def service_page(request):
     return render(request, 'site/service.html')
 

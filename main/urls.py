@@ -10,6 +10,7 @@ urlpatterns = [
 
     # Header
     path('about/', views.about_page, name='about-page'),
+    path('projects/', views.projects_page, name='projects-page'),
     path('cart/', views.cart_page, name='cart-page'),
 
     # Main pages

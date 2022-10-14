@@ -1,4 +1,5 @@
 from django.utils.text import slugify as django_slugify
+import uuid
 
 # Slugify (Cyrillic)
 alphabet = {'а': 'a', 'б': 'b', 'в': 'v', 'г': 'g', 'д': 'd', 'е': 'e', 'ё': 'yo', 'ж': 'zh', 'з': 'z', 'и': 'i',
@@ -9,3 +10,7 @@ alphabet = {'а': 'a', 'б': 'b', 'в': 'v', 'г': 'g', 'д': 'd', 'е': 'e', '�
 
 def lat_to_cyr_slugify(s):
     return django_slugify(''.join(alphabet.get(w, w) for w in s.lower()))
+
+
+def uuid_generator():
+    return uuid.uuid4().hex

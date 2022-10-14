@@ -1,4 +1,6 @@
 {% load static %}
+{% load main_extras %}
+{% load i18n %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,18 +18,19 @@
     </title>
 </head>
 
+{% define 'cfede78d5d234896ad9fdc3d583f27b2 6dd8b9c879a94d0f9eace3179dd5a479'|split as work_times %}
+
 <body>
     <header class="header">
         <div class="wrap">
             <div class="time-work">
-                <img class="lazyload" data-src="{% static 'img/icons/time.svg' %}" alt="Время работы">
+                <img class="lazyload" data-src="{% static 'img/icons/time.svg' %}" alt="{% translate 'Work time' %}">
                 <div class="time-work__items">
+                    {% for time_work in work_times %}
                     <div class="time-work__item">
-                        111
+                        {{ time_work|get_info_by_uid|remove_root_tag|safe }}
                     </div>
-                    <div class="time-work__item">
-                        11
-                    </div>
+                    {% endfor %}
                 </div>
             </div>
             <div class="contacts">
@@ -91,11 +94,11 @@
             </a>
             <div class="nav__items">
                 <a href="{% url 'about-page' %}" class="nav__item">Company</a>
-                <a href="#" class="nav__item">Projects</a>
+                <a href="{% url 'projects-page' %}" class="nav__item">Projects</a>
                 <a href="#" class="nav__item">Certificates</a>
                 <a href="#" class="nav__item">Contacts</a>
             </div>
-            <a href="#" class="shopping-cart" attr-count="">
+            <a href="{% url 'cart-page' %}" class="shopping-cart" attr-count="">
                 <img class="lazyload" data-src="{% static 'img/icons/shopping card.png' %}" alt="">
             </a>
             <div class="nav__open mobile">
@@ -107,7 +110,7 @@
     <div class="nav-mobile mobile">
         <div class="nav__items">
             <a href="{% url 'about-page' %}" class="nav__item">Company</a>
-            <a href="#" class="nav__item">Projects</a>
+            <a href="{% url 'projects-page' %}" class="nav__item">Projects</a>
             <a href="#" class="nav__item">Certificates</a>
             <a href="#" class="nav__item">Contacts</a>
         </div>
@@ -155,12 +158,11 @@
         <div class="time-work">
             <img class="lazyload" data-src="{% static 'img/icons/time.svg' %}" alt"Время работы">
             <div class="time-work__items">
+                {% for time_work in work_times %}
                 <div class="time-work__item">
-                    1111
+                    {{ time_work|get_info_by_uid|remove_root_tag|safe }}
                 </div>
-                <div class="time-work__item">
-                    1111
-                </div>
+                {% endfor %}
             </div>
         </div>
         <div class="mail">
@@ -180,7 +182,7 @@
             </div>
             <div class="footer__item">
                 <a href="{% url 'about-page' %}" class="nav__item">Company</a>
-                <a href="#" class="nav__item">Projects</a>
+                <a href="{% url 'projects-page' %}" class="nav__item">Projects</a>
                 <a href="#" class="nav__item">Certificates</a>
                 <a href="#" class="nav__item">Contacts</a>
             </div>
@@ -188,12 +190,11 @@
                 <div class="time-work">
                     <img class="lazyload" data-src="{% static 'img/icons/time.svg' %}" alt="Время работы">
                     <div class="time-work__items">
+                        {% for time_work in work_times %}
                         <div class="time-work__item">
-                            1111
+                            {{ time_work|get_info_by_uid|remove_root_tag|safe }}
                         </div>
-                        <div class="time-work__item">
-                            1111
-                        </div>
+                        {% endfor %}
                     </div>
                 </div>
                 <div class="mail">

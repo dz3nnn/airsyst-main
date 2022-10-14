@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-13 08:17+0000\n"
+"POT-Creation-Date: 2022-10-14 08:28+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,15 +20,35 @@ msgstr ""
 "n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
 "(n%100>=11 && n%100<=14)? 2 : 3);\n"
 
-#: templates/site/404.html:8
+#: airsyst/settings.py:164
+msgid "English"
+msgstr ""
+
+#: airsyst/settings.py:165
+msgid "Russian"
+msgstr ""
+
+#: main/models.py:10
+msgid "Обслуживание"
+msgstr ""
+
+#: main/models.py:11
+msgid "Сервис"
+msgstr ""
+
+#: main/models.py:12
+msgid "Продажи"
+msgstr ""
+
+#: templates/site/errors/404.html:8
 msgid "Page not found!"
 msgstr ""
 
-#: templates/site/404.html:10 templates/site/500.html:11
+#: templates/site/errors/404.html:10 templates/site/errors/500.html:11
 msgid "Go home"
 msgstr "Вернуться на главную"
 
-#: templates/site/500.html:9
+#: templates/site/errors/500.html:9
 msgid "Server error!"
 msgstr "Серверная ошибка!"
 
@@ -1233,4 +1253,8 @@ msgstr ""
 
 #: venv/lib/python3.10/site-packages/django/views/templates/default_urlconf.html:249
 msgid "Connect, get help, or contribute"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/modeltranslation/widgets.py:26
+msgid "None"
 msgstr ""

@@ -12,6 +12,9 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 from pathlib import Path
 import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -45,6 +48,7 @@ INSTALLED_APPS = [
 
     # Other
     'mptt',
+    'tinymce',
 
     # My apps
     'main',
@@ -118,6 +122,9 @@ LANGUAGE_CODE = 'en-us'
 
 CURRENT_SITE_LANG = 'en'  # en or ru
 
+_SITE_REGIONS = ('ie', 'eu', 'ru', 'by', 'kz')
+CURRENT_SITE_REGION = 'eu'
+
 TIME_ZONE = 'UTC'
 
 USE_I18N = True
@@ -157,3 +164,32 @@ LANGUAGES = (
     ('en', gettext('English')),
     ('ru', gettext('Russian')),
 )
+
+_SSL_ENABLE = False
+
+if _SSL_ENABLE:
+    SECURE_SSL_REDIRECT = True
+    SECURE_HSTS_SECONDS = 3600
+    SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+    SECURE_HSTS_PRELOAD = True
+    SESSION_COOKIE_SECURE = True
+    CSRF_COOKIE_SECURE = True
+
+# TinyMCE
+
+# TINYMCE_JS_URL = os.path.join(STATIC_URL, "path/to/tiny_mce/tiny_mce.js")
+# TINYMCE_JS_ROOT = os.path.join(STATIC_ROOT, "path/to/tiny_mce")
+
+TINYMCE_DEFAULT_CONFIG = {
+    "height": "320px",
+    "width": "960px",
+    "menubar": "file edit view insert format tools table help",
+    "plugins": "advlist autolink lists link image charmap print preview anchor searchreplace visualblocks code "
+    "fullscreen insertdatetime media table paste code help wordcount spellchecker",
+    "toolbar": "undo redo | bold italic underline strikethrough | fontselect fontsizeselect formatselect | alignleft "
+    "aligncenter alignright alignjustify | outdent indent |  numlist bullist checklist | forecolor "
+    "backcolor casechange permanentpen formatpainter removeformat | pagebreak | charmap emoticons | "
+    "fullscreen  preview save print | insertfile image media pageembed template link anchor codesample | "
+    "a11ycheck ltr rtl | showcomments addcomment code",
+    "custom_undo_redo_levels": 10,
+}
