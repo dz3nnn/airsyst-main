@@ -19,6 +19,9 @@
 </head>
 
 {% define 'cfede78d5d234896ad9fdc3d583f27b2 6dd8b9c879a94d0f9eace3179dd5a479'|split as work_times %}
+{% define '2627f8fb433f4b73ac80de37ed10cb49 3aff3418a09e4246b7559adf7c5700cb'|split as sales_phones %}
+{% define '76de8fee2fa34a67bcfafda9fc15a37f 524f7d65e0604d73a8ec0fc401a3a0d2'|split as service_phones %}
+{% define '3cbe2ebe7dfc4145924ebd36d174afe6' as contact_email %}
 
 <body>
     <header class="header">
@@ -28,14 +31,14 @@
                 <div class="time-work__items">
                     {% for time_work in work_times %}
                     <div class="time-work__item">
-                        {{ time_work|get_info_by_uid|remove_root_tag|safe }}
+                        {{ time_work|get_info_by_uid|safe }}
                     </div>
                     {% endfor %}
                 </div>
             </div>
             <div class="contacts">
                 <div class="contacts__left">
-                    <h3>Sales department</h3>
+                    <h3>{% translate 'Sales department' %}</h3>
                     <div class="smm">
                         <a target="_blank" href="https://t.me/1111" class="smm__item">
                             <img class="lazyload" data-src="{% static 'img/icons/telegram.svg' %}" alt="">
@@ -49,17 +52,16 @@
                     </div>
                 </div>
                 <div class="contacts__right">
-                    <a target="_blank" href="tel:1111" class="tel">
-                        1111
+                    {% for sales_phone in sales_phones %}
+                    <a target="_blank" href="tel:{{ sales_phone|get_info_by_uid|trim_phone_for_tag|safe }}" class="tel">
+                        {{ sales_phone|get_info_by_uid|safe }}
                     </a>
-                    <a target="_blank" href="tel:1111" class="tel">
-                        1111
-                    </a>
+                    {% endfor %}
                 </div>
             </div>
             <div class="contacts">
                 <div class="contacts__left">
-                    <h3>Service department</h3>
+                    <h3>{% translate 'Service department' %}</h3>
                     <div class="smm">
                         <a target="_blank" href="https://t.me/1111" class="smm__item">
                             <img class="lazyload" data-src="{% static 'img/icons/telegram.svg' %}" alt="">
@@ -73,17 +75,17 @@
                     </div>
                 </div>
                 <div class="contacts__right">
-                    <a target="_blank" href="tel:1111" class="tel">
-                        1111
+                    {% for service_phone in service_phones %}
+                    <a target="_blank" href="tel:{{ service_phone|get_info_by_uid|trim_phone_for_tag|safe }}"
+                        class="tel">
+                        {{ service_phone|get_info_by_uid|safe }}
                     </a>
-                    <a target="_blank" href="tel:1111" class="tel">
-                        1111
-                    </a>
+                    {% endfor %}
                 </div>
             </div>
             <div class="mail">
                 <img class="lazyload" data-src="{% static 'img/icons/mail.svg' %}" alt="">
-                <a target="_blank" href="mailto:1111">1111</a>
+                <a target="_blank" href="mailto:{{ contact_email|get_info_by_uid|safe }}">{{ contact_email|get_info_by_uid|safe }}</a>
             </div>
         </div>
     </header>
@@ -93,10 +95,10 @@
                 <img class="lazyload" data-src="{% static 'img/images/airsyst.svg' %}" alt="AirSyst">
             </a>
             <div class="nav__items">
-                <a href="{% url 'about-page' %}" class="nav__item">Company</a>
-                <a href="{% url 'projects-page' %}" class="nav__item">Projects</a>
-                <a href="#" class="nav__item">Certificates</a>
-                <a href="#" class="nav__item">Contacts</a>
+                <a href="{% url 'about-page' %}" class="nav__item">{% translate 'Company' %}</a>
+                <a href="{% url 'projects-page' %}" class="nav__item">{% translate 'Projects' %}</a>
+                <a href="#" class="nav__item">{% translate 'Certificates' %}</a>
+                <a href="#" class="nav__item">{% translate 'Contacts' %}</a>
             </div>
             <a href="{% url 'cart-page' %}" class="shopping-cart" attr-count="">
                 <img class="lazyload" data-src="{% static 'img/icons/shopping card.png' %}" alt="">
@@ -109,20 +111,20 @@
     </nav>
     <div class="nav-mobile mobile">
         <div class="nav__items">
-            <a href="{% url 'about-page' %}" class="nav__item">Company</a>
-            <a href="{% url 'projects-page' %}" class="nav__item">Projects</a>
-            <a href="#" class="nav__item">Certificates</a>
-            <a href="#" class="nav__item">Contacts</a>
+            <a href="{% url 'about-page' %}" class="nav__item">{% translate 'Company' %}</a>
+            <a href="{% url 'projects-page' %}" class="nav__item">{% translate 'Projects' %}</a>
+            <a href="#" class="nav__item">{% translate 'Certificates' %}</a>
+            <a href="#" class="nav__item">{% translate 'Contacts' %}</a>
         </div>
         <div class="contacts">
             <div class="contacts__left">
-                <h3>Sales department</h3>
+                <h3>{% translate 'Sales department' %}</h3>
                 <div class="contacts__right">
-                    <a target="_blank" href="tel:1111" class="tel">
-                        1111
+                    {% for sales_phone in sales_phones %}
+                    <a target="_blank" href="tel:{{ sales_phone|get_info_by_uid|trim_phone_for_tag|safe }}" class="tel">
+                        {{ sales_phone|get_info_by_uid|safe }}
                     </a>
-                    <a target="_blank" href="tel:1111" class="tel">
-                        1111</a>
+                    {% endfor %}
                 </div>
                 <div class="smm">
                     <a target="_blank" href="https://t.me/1111" class="smm__item"><img class="lazyload"
@@ -136,14 +138,14 @@
         </div>
         <div class="contacts">
             <div class="contacts__left">
-                <h3>Service department</h3>
+                <h3>{% translate 'Service department' %}</h3>
                 <div class="contacts__right">
-                    <a target="_blank" href="tel:1111" class="tel">
-                        1111
+                    {% for service_phone in service_phones %}
+                    <a target="_blank" href="tel:{{ service_phone|get_info_by_uid|trim_phone_for_tag|safe }}"
+                        class="tel">
+                        {{ service_phone|get_info_by_uid|safe }}
                     </a>
-                    <a target="_blank" href="tel:1111" class="tel">
-                        1111
-                    </a>
+                    {% endfor %}
                 </div>
                 <div class="smm">
                     <a target="_blank" href="https://t.me/1111" class="smm__item"><img class="lazyload"
@@ -160,14 +162,14 @@
             <div class="time-work__items">
                 {% for time_work in work_times %}
                 <div class="time-work__item">
-                    {{ time_work|get_info_by_uid|remove_root_tag|safe }}
+                    {{ time_work|get_info_by_uid|safe }}
                 </div>
                 {% endfor %}
             </div>
         </div>
         <div class="mail">
             <img class="lazyload" data-src="{% static 'img/icons/mail.svg' %}" alt="">
-            <a target="_blank" href="mailto:1111">1111</a>
+            <a target="_blank" href="mailto:{{ contact_email|get_info_by_uid|safe }}">{{ contact_email|get_info_by_uid|safe }}</a>
         </div>
     </div>
     {% block content %}
@@ -181,10 +183,10 @@
                 <div class="copyright">© 2015-2022</div>
             </div>
             <div class="footer__item">
-                <a href="{% url 'about-page' %}" class="nav__item">Company</a>
-                <a href="{% url 'projects-page' %}" class="nav__item">Projects</a>
-                <a href="#" class="nav__item">Certificates</a>
-                <a href="#" class="nav__item">Contacts</a>
+                <a href="{% url 'about-page' %}" class="nav__item">{% translate 'Company' %}</a>
+                <a href="{% url 'projects-page' %}" class="nav__item">{% translate 'Projects' %}</a>
+                <a href="#" class="nav__item">{% translate 'Certificates' %}</a>
+                <a href="#" class="nav__item">{% translate 'Contacts' %}</a>
             </div>
             <div class="footer__item">
                 <div class="time-work">
@@ -192,20 +194,20 @@
                     <div class="time-work__items">
                         {% for time_work in work_times %}
                         <div class="time-work__item">
-                            {{ time_work|get_info_by_uid|remove_root_tag|safe }}
+                            {{ time_work|get_info_by_uid|safe }}
                         </div>
                         {% endfor %}
                     </div>
                 </div>
                 <div class="mail">
                     <img class="lazyload" data-src="{% static 'img/icons/mail.svg' %}" alt="">
-                    <a target="_blank" href="mailto:1111">1111</a>
+                    <a target="_blank" href="mailto:{{ contact_email|get_info_by_uid|safe }}">{{ contact_email|get_info_by_uid|safe }}</a>
                 </div>
             </div>
             <div class="footer__item">
                 <div class="contacts">
                     <div class="contacts__left">
-                        <h3>Sales department</h3>
+                        <h3>{% translate 'Sales department' %}</h3>
                         <div class="smm">
                             <a target="_blank" href="https://t.me/1111" class="smm__item">
                                 <img class="lazyload" data-src="{% static 'img/icons/telegram.svg' %}" alt="">
@@ -219,16 +221,17 @@
                         </div>
                     </div>
                     <div class="contacts__right">
-                        <a target="_blank" href="tel:1111" class="tel">
-                            1111
+                        {% for sales_phone in sales_phones %}
+                        <a target="_blank" href="tel:{{ sales_phone|get_info_by_uid|trim_phone_for_tag|safe }}"
+                            class="tel">
+                            {{ sales_phone|get_info_by_uid|safe }}
                         </a>
-                        <a target="_blank" href="tel:1111" class="tel">
-                            1111</a>
+                        {% endfor %}
                     </div>
                 </div>
                 <div class="contacts">
                     <div class="contacts__left">
-                        <h3>Service department</h3>
+                        <h3>{% translate 'Service department' %}</h3>
                         <div class="smm">
                             <a target="_blank" href="https://t.me/1111" class="smm__item">
                                 <img class="lazyload" data-src="{% static 'img/icons/telegram.svg' %}" alt="">
@@ -242,12 +245,12 @@
                         </div>
                     </div>
                     <div class="contacts__right">
-                        <a target="_blank" href="tel:1111" class="tel">
-                            1111
+                        {% for service_phone in service_phones %}
+                        <a target="_blank" href="tel:{{ service_phone|get_info_by_uid|trim_phone_for_tag|safe }}"
+                            class="tel">
+                            {{ service_phone|get_info_by_uid|safe }}
                         </a>
-                        <a target="_blank" href="tel:1111" class="tel">
-                            1111
-                        </a>
+                        {% endfor %}
                     </div>
                 </div>
             </div>
@@ -267,18 +270,18 @@
                 <img class="lazyload" data-src="{% static 'img/icons/close.svg' %}">
             </div>
             <div class="title">
-                Making an order
+                {% translate 'Making an order' %}
             </div>
             <div class="sub-title">
-                Enter your contact details
+                {% translate 'Enter your contact details' %}
             </div>
             <div class="order__inputs">
                 {% csrf_token %}
-                <input type="text" name="name" placeholder="Name">
-                <input type="phone" name="phone" placeholder="Phone" inputmode="text">
-                <input type="mail" name="email" placeholder="Email" inputmode="email">
+                <input type="text" name="name" placeholder="{% translate 'Name' %}">
+                <input type="phone" name="phone" placeholder="{% translate 'Phone' %}" inputmode="text">
+                <input type="mail" name="email" placeholder="{% translate 'Email' %}" inputmode="email">
             </div>
-            <div class="btn">Send</div>
+            <div class="btn">{% translate 'Send' %}</div>
         </div>
     </div>
 

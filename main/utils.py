@@ -1,4 +1,5 @@
 from django.utils.text import slugify as django_slugify
+from django.conf import settings
 import uuid
 
 # Slugify (Cyrillic)
@@ -14,3 +15,13 @@ def lat_to_cyr_slugify(s):
 
 def uuid_generator():
     return uuid.uuid4().hex
+
+
+def get_model_attr_by_lang(_obj, _field):
+    try:
+        if settings.CURRENT_SITE_LANG == 'ru':
+            return getattr(_obj, f'{_field}_ru')
+        else:
+            return getattr(_obj, f'{_field}_en')
+    except AttributeError:
+        return ''

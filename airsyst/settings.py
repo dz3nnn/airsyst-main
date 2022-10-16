@@ -120,10 +120,12 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-CURRENT_SITE_LANG = 'en'  # en or ru
-
-_SITE_REGIONS = ('ie', 'eu', 'ru', 'by', 'kz')
-CURRENT_SITE_REGION = 'eu'
+CURRENT_SITE_REGION = 'eu'  # ie, eu, by, ru, kz
+if CURRENT_SITE_REGION in ['ru', 'by', 'kz']:
+    CURRENT_SITE_LANG = 'ru'
+else:
+    # in ['ie', 'eu']
+    CURRENT_SITE_LANG = 'en'
 
 TIME_ZONE = 'UTC'
 

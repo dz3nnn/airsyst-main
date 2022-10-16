@@ -1,18 +1,19 @@
 {% load static %}
+{% load i18n %}
 <section class="feedback wrap">
     <form>
         {% csrf_token %}
-        <h2 class="feedback__title">Feedback</h2>
-        <input type="text" name="name" placeholder="Name">
-        <input type="phone" name="phone" placeholder="Phone">
-        <input type="text" name="mail" placeholder="Email">
-        <textarea name="message" placeholder="Your message"></textarea>
+        <h2 class="feedback__title">{% translate 'Feedback' %}</h2>
+        <input type="text" name="name" placeholder="{% translate 'Name' %}">
+        <input type="phone" name="phone" placeholder="{% translate 'Phone' %}">
+        <input type="text" name="mail" placeholder="{% translate 'Email' %}">
+        <textarea name="message" placeholder="{% translate 'Your message' %}"></textarea>
         <div class="feedback__checkbox">
             <div class="feedback__check">
                 <img class="lazyload" data-src="{% static 'img/icons/check.svg' %}">
             </div>
-            <span>I accept the privacy policy</span>
+            <span>{% translate 'I accept the privacy policy' %}</span>
         </div>
-        <input type="submit" value="Send" class="btn">
+        <input type="submit" value="{% translate 'Send' %}" class="btn">
     </form>
 </section>

@@ -1,10 +1,12 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load i18n %}
+{% load main_extras %}
 {% block title %}AirSyst - {{ category.name }}{% endblock %}
 {% block content %}
 <div class="bread-crumbs wrap">
-    <a href="/" class="bread-crumbs__item">Home</a>
-    <a href="{% url 'products-page' %}" class="bread-crumbs__item">Products</a>
+    <a href="/" class="bread-crumbs__item">{% translate 'Home' %}</a>
+    <a href="{% url 'products-page' %}" class="bread-crumbs__item">{% translate 'Products' %}</a>
     <div class="bread-crumbs__item">{{ category.name }}</div>
 </div>
 <section class="air wrap">
@@ -16,7 +18,7 @@
             {% if sub_category.image %}
             <img class="lazyload" data-src="{{ sub_category.image.url }}" alt="">
             {% endif %}
-            <h2 class="air__name">{{ sub_category.name }}</h2>
+            <h2 class="air__name">{{ sub_category|get_lang_field:'name' }}</h2>
         </a>
         {% endfor %}
     </div>

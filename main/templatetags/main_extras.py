@@ -1,6 +1,8 @@
 from django import template
 from main.models import Category, Information
 from django.conf import settings
+from ..utils import get_model_attr_by_lang
+import re
 
 register = template.Library()
 
@@ -31,7 +33,7 @@ def get_info_by_uid(info_uid: str) -> str:
     if info:
         first_info = info.first()
         if settings.CURRENT_SITE_REGION == 'eu':
-            return first_info.eu
+            return remove_root_tag(first_info.eu)
     return ''
 
 
@@ -43,3 +45,13 @@ def split(value):
 @register.simple_tag
 def define(val=None):
     return val
+
+
+@register.filter
+def trim_phone_for_tag(value):
+    return re.sub('[^0-9+]', '', value)
+
+
+@register.filter(name='get_lang_field')
+def get_object_attr_for_lang(value, arg):
+    return get_model_attr_by_lang(value, arg)
