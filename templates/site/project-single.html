@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load main_extras %}
+{% block title %}AirSyst - {{ project.company.name }}{% endblock %}
+{% block content %}
+<div class="bread-crumbs wrap">
+    <a href="/" class="bread-crumbs__item">{% translate 'Home' %}</a>
+    <a href="{% url 'projects-page' %}" class="bread-crumbs__item">{% translate 'Our projects' %}</a>
+    <div class="bread-crumbs__item">{{ project.company.name }}</div>
+</div>
+<div class="project wrap">
+    <h1 class="title">{% translate 'OUR PROJECTS' %}</h1>
+    <div class="projects__date">
+        <div class="projects__day">{{ project.date|get_day }}</div>
+        <div class="project__small-date">
+            <div class="projects__month">{{ project.date|get_month }}</div>
+            <div class="projects__year">{{ project.date|get_year }}</div>
+        </div>
+    </div>
+    <h3 class="projects__customer">{{ project.company.name }}</h3>
+    <h3 class="projects__name">{{ project|get_lang_field:"title" }} </h3>
+    <h4 class="projects__descr">
+        {{ project|get_lang_field:"description"|remove_root_tag }}
+    </h4>
+</div>
+{% if images %}
+<div class="project__slider swiper wrap">
+    <div class="swiper-wrapper">
+        {% for image_model in images %}
+        {% if not forloop.first %}
+        <div class="swiper-slide project__slide">
+            <img class="lazyload" data-src="{{ image_model.image.url }}" alt="">
+        </div>
+        {% endif %}
+        {% endfor %}
+    </div>
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+</div>
+{% endif %}
+{% endblock %}

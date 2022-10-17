@@ -16,12 +16,18 @@
     <title>
         {% block title %}{% endblock %}
     </title>
+    {% block description %}
+    {# <meta name="description" content="Free Web tutorials"> #}
+    {% endblock %}
 </head>
 
 {% define 'cfede78d5d234896ad9fdc3d583f27b2 6dd8b9c879a94d0f9eace3179dd5a479'|split as work_times %}
 {% define '2627f8fb433f4b73ac80de37ed10cb49 3aff3418a09e4246b7559adf7c5700cb'|split as sales_phones %}
 {% define '76de8fee2fa34a67bcfafda9fc15a37f 524f7d65e0604d73a8ec0fc401a3a0d2'|split as service_phones %}
 {% define '3cbe2ebe7dfc4145924ebd36d174afe6' as contact_email %}
+{% define '57c3f80a06e9495e8364c95cb532aef5' as telegram_link %}
+{% define '527422e0af344cfaa3ae064a78ecd52d' as wa_link %}
+{% define 'd914f64d95fe496896d0d965dc5c9ca5' as viber_link %}
 
 <body>
     <header class="header">
@@ -40,13 +46,13 @@
                 <div class="contacts__left">
                     <h3>{% translate 'Sales department' %}</h3>
                     <div class="smm">
-                        <a target="_blank" href="https://t.me/1111" class="smm__item">
+                        <a target="_blank" href="https://t.me/{{ telegram_link|get_info_by_uid|safe }}" class="smm__item">
                             <img class="lazyload" data-src="{% static 'img/icons/telegram.svg' %}" alt="">
                         </a>
-                        <a target="_blank" href="https://wa.me/1111" class="smm__item">
+                        <a target="_blank" href="https://wa.me/{{ wa_link|get_info_by_uid|safe }}" class="smm__item">
                             <img class="lazyload" data-src="{% static 'img/icons/whatsapp.svg' %}" alt="">
                         </a>
-                        <a target="_blank" href="viber://chat?number=1111" class="smm__item">
+                        <a target="_blank" href="viber://chat?number={{ viber_link|get_info_by_uid|safe }}" class="smm__item">
                             <img class="lazyload" data-src="{% static 'img/icons/viber.svg' %}" alt="">
                         </a>
                     </div>
@@ -63,13 +69,13 @@
                 <div class="contacts__left">
                     <h3>{% translate 'Service department' %}</h3>
                     <div class="smm">
-                        <a target="_blank" href="https://t.me/1111" class="smm__item">
+                        <a target="_blank" href="https://t.me/{{ telegram_link|get_info_by_uid|safe }}" class="smm__item">
                             <img class="lazyload" data-src="{% static 'img/icons/telegram.svg' %}" alt="">
                         </a>
-                        <a target="_blank" href="https://wa.me/1111" class="smm__item">
+                        <a target="_blank" href="https://wa.me/{{ wa_link|get_info_by_uid|safe }}" class="smm__item">
                             <img class="lazyload" data-src="{% static 'img/icons/whatsapp.svg' %}" alt="">
                         </a>
-                        <a target="_blank" href="viber://chat?number=1111" class="smm__item">
+                        <a target="_blank" href="viber://chat?number={{ viber_link|get_info_by_uid|safe }}" class="smm__item">
                             <img class="lazyload" data-src="{% static 'img/icons/viber.svg' %}" alt="">
                         </a>
                     </div>
@@ -127,11 +133,11 @@
                     {% endfor %}
                 </div>
                 <div class="smm">
-                    <a target="_blank" href="https://t.me/1111" class="smm__item"><img class="lazyload"
+                    <a target="_blank" href="https://t.me/{{ telegram_link|get_info_by_uid|safe }}" class="smm__item"><img class="lazyload"
                             data-src="{% static 'img/icons/telegram.svg' %}" alt=""></a>
-                    <a target="_blank" href="https://wa.me/1111" class="smm__item"><img class="lazyload"
+                    <a target="_blank" href="https://wa.me/{{ wa_link|get_info_by_uid|safe }}" class="smm__item"><img class="lazyload"
                             data-src="{% static 'img/icons/whatsapp.svg' %}" alt=""></a>
-                    <a target="_blank" href="viber://chat?number=1111" class="smm__item"><img class="lazyload"
+                    <a target="_blank" href="viber://chat?number={{ viber_link|get_info_by_uid|safe }}" class="smm__item"><img class="lazyload"
                             data-src="{% static 'img/icons/viber.svg' %}" alt=""></a>
                 </div>
             </div>
@@ -148,11 +154,11 @@
                     {% endfor %}
                 </div>
                 <div class="smm">
-                    <a target="_blank" href="https://t.me/1111" class="smm__item"><img class="lazyload"
+                    <a target="_blank" href="https://t.me/{{ telegram_link|get_info_by_uid|safe }}" class="smm__item"><img class="lazyload"
                             data-src="{% static 'img/icons/telegram.svg' %}" alt=""></a>
-                    <a target="_blank" href="https://wa.me/1111" class="smm__item"><img class="lazyload"
+                    <a target="_blank" href="https://wa.me/{{ wa_link|get_info_by_uid|safe }}" class="smm__item"><img class="lazyload"
                             data-src="{% static 'img/icons/whatsapp.svg' %}" alt=""></a>
-                    <a target="_blank" href="viber://chat?number=1111" class="smm__item"><img class="lazyload"
+                    <a target="_blank" href="viber://chat?number={{ viber_link|get_info_by_uid|safe }}" class="smm__item"><img class="lazyload"
                             data-src="{% static 'img/icons/viber.svg' %}" alt=""></a>
                 </div>
             </div>
@@ -180,7 +186,7 @@
                 <a href="/" class="logo">
                     <img class="lazyload" data-src="{% static 'img/images/airsyst.svg' %}" alt="AirSyst">
                 </a>
-                <div class="copyright">© 2015-2022</div>
+                <div class="copyright">© 2015-{% now 'Y' %}</div>
             </div>
             <div class="footer__item">
                 <a href="{% url 'about-page' %}" class="nav__item">{% translate 'Company' %}</a>
@@ -209,13 +215,13 @@
                     <div class="contacts__left">
                         <h3>{% translate 'Sales department' %}</h3>
                         <div class="smm">
-                            <a target="_blank" href="https://t.me/1111" class="smm__item">
+                            <a target="_blank" href="https://t.me/{{ telegram_link|get_info_by_uid|safe }}" class="smm__item">
                                 <img class="lazyload" data-src="{% static 'img/icons/telegram.svg' %}" alt="">
                             </a>
-                            <a target="_blank" href="https://wa.me/1111" class="smm__item">
+                            <a target="_blank" href="https://wa.me/{{ wa_link|get_info_by_uid|safe }}" class="smm__item">
                                 <img class="lazyload" data-src="{% static 'img/icons/whatsapp.svg' %}" alt="">
                             </a>
-                            <a target="_blank" href="viber://chat?number=1111" class="smm__item">
+                            <a target="_blank" href="viber://chat?number={{ viber_link|get_info_by_uid|safe }}" class="smm__item">
                                 <img class="lazyload" data-src="{% static 'img/icons/viber.svg' %}" alt="">
                             </a>
                         </div>
@@ -233,13 +239,13 @@
                     <div class="contacts__left">
                         <h3>{% translate 'Service department' %}</h3>
                         <div class="smm">
-                            <a target="_blank" href="https://t.me/1111" class="smm__item">
+                            <a target="_blank" href="https://t.me/{{ telegram_link|get_info_by_uid|safe }}" class="smm__item">
                                 <img class="lazyload" data-src="{% static 'img/icons/telegram.svg' %}" alt="">
                             </a>
-                            <a target="_blank" href="https://wa.me/1111" class="smm__item">
+                            <a target="_blank" href="https://wa.me/{{ wa_link|get_info_by_uid|safe }}" class="smm__item">
                                 <img class="lazyload" data-src="{% static 'img/icons/whatsapp.svg' %}" alt="">
                             </a>
-                            <a target="_blank" href="viber://chat?number=1111" class="smm__item">
+                            <a target="_blank" href="viber://chat?number={{ viber_link|get_info_by_uid|safe }}" class="smm__item">
                                 <img class="lazyload" data-src="{% static 'img/icons/viber.svg' %}" alt="">
                             </a>
                         </div>

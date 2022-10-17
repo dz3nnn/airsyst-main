@@ -1,27 +1,29 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load main_extras %}
+{% load i18n %}
 {% block title %}AirSyst - Our projects{% endblock %}
 {% block content %}
 <div class="bread-crumbs wrap">
-    <a href="/" class="bread-crumbs__item">Home</a>
-    <div class="bread-crumbs__item">Our projects</div>
+    <a href="/" class="bread-crumbs__item">{% translate 'Home' %}</a>
+    <div class="bread-crumbs__item">{% translate 'Our projects' %}</div>
 </div>
 <section class="projects wrap">
-    <h1 class="title">OUR PROJECTS</h1>
+    <h1 class="title">{% translate 'OUR PROJECTS' %}</h1>
     <div class="sort-select">
         <div class="custom-select">
-            Sorting: <span>All projects</span>
+            {% translate 'Sorting' %}: <span>{% translate 'All projects' %}</span>
         </div>
         <select id="sort">
-            <option selected disabled>Select a filter</option>
+            <option selected disabled>{% translate 'Select a filter' %}</option>
             <option value="ALL">
-                All projects
+                {% translate 'All projects' %}
             </option>
             <option value="REPAIR">
-                Service
+                {% translate 'Service' %}
             </option>
             <option value="SELL">
-                Sales
+                {% translate 'Sales' %}
             </option>
         </select>
     </div>
@@ -29,26 +31,25 @@
         {% for project in projects %}
         <div class="projects__item">
             <div class="projects__preview">
-                {# get_images_for_project #}
-                <img class="lazyload" data-src="{{ proj_image.image.url }}" alt="">
+                <img class="lazyload" data-src="{{ project.get_first_image_url }}" alt="">
                 <img class="lazyload projects__manufacturer" data-src="{{ project.brand.logo.url }}">
             </div>
             <div class="projects__content">
                 <div class="projects__date">
-                    <div class="projects__day">{{ project.date }}</div>
+                    <div class="projects__day">{{ project.date|get_day }}</div>
                     <div class="project__small-date">
-                        <div class="projects__month">{{ project.date }}</div>
-                        <div class="projects__year">{{ project.date }}</div>
+                        <div class="projects__month">{{ project.date|get_month }}</div>
+                        <div class="projects__year">{{ project.date|get_year }}</div>
                     </div>
                 </div>
                 <h3 class="projects__customer">{{ project.company.name }}</h3>
                 <h3 class="projects__name">
-                    {{ project.title }}
+                    {{ project|get_lang_field:"title" }}
                 </h3>
                 <h4 class="projects__descr">
-                    {{ project.description }}
+                    {{ project|get_lang_field:"description"|remove_root_tag|truncatechars_html:250 }}
                 </h4>
-                <a href="#" class="btn">Detail</a>
+                <a href="{{ project.get_absolute_url }}" class="btn">{% translate 'Detail' %}</a>
             </div>
         </div>
         {% endfor %}
