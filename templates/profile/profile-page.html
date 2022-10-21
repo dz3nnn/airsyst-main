@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load main_extras %}
+{% block title %}AirSyst - Profile{% endblock %}
+{% block content %}
+<section class="order lk wrap">
+    <div class="your-discont">
+        Ваша скидка 5%
+    </div>
+    <h2 class="sub-title">
+        Введите контактные данные
+    </h2>
+    <div class="order__form">
+        <div class="order__inputs">
+            <input type="text" name="" placeholder="Имя">
+            <input type="phone" name="" placeholder="Телефон">
+            <input type="mail" name="" placeholder="Email">
+        </div>
+        <div class="filter__checkbox need-rec">
+            <div class="filter__check">
+                <img src="{% static 'img/icons/check.svg' %}">
+            </div>
+            <span>Я представитель юридического лица или ИП</span>
+        </div>
+        <div class="order__rec">
+            <div class="order__rec-null">
+                <img src="{% static 'img/icons/rec.svg' %}">
+                Данной организации еше нет в нашей базе. Пожалуйста, введите по ней информацию.
+            </div>
+
+            <div class="order__inputs">
+                <input type="text" name="" placeholder="Название организации*">
+                <div class="order__input">
+                    <input type="text" name="" placeholder="Юридическтй адрес*">
+                    <div class="filter__checkbox">
+                        <div class="filter__check">
+                            <img src="{% static 'img/icons/check.svg' %}">
+                        </div>
+                        <span>Совпадает с физическим</span>
+                    </div>
+                </div>
+                <input type="text" name="" placeholder="Физический адрес">
+            </div>
+            <div class="order__inputs">
+                <input type="text" name="" placeholder="УНП*">
+                <input type="text" name="" placeholder="Расчетный счет*">
+                <input type="text" name="" placeholder="SWIFT банка*">
+            </div>
+            <div class="order__inputs">
+                <input type="text" name="" placeholder="Наименование банка*">
+            </div>
+        </div>
+        <div class="btn">Сохранить</div>
+        <a href="{% url 'history-page' %}" class="btn">История заказов</a>
+    </div>
+</section>
+
+{% endblock %}

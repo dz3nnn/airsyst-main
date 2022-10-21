@@ -3,6 +3,7 @@ from main.models import Category, Information
 from django.conf import settings
 from ..utils import get_model_attr_by_lang
 import re
+from typing import List
 
 register = template.Library()
 
@@ -109,3 +110,14 @@ def trim_phone_for_tag(value):
 @register.filter(name="get_lang_field")
 def get_object_attr_for_lang(value, arg):
     return get_model_attr_by_lang(value, arg)
+
+
+@register.filter
+def have_childs(value: Category) -> bool:
+    return not value.is_leaf_node()
+
+
+@register.filter
+def get_parent_categories(value: Category) -> List[Category]:
+    if value:
+        return value.get_family()

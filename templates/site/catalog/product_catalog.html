@@ -1,0 +1,148 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load main_extras %}
+{% block title %}AirSyst - Products{% endblock %}
+{% block content %}
+<div class="bread-crumbs wrap">
+    <a href="/" class="bread-crumbs__item">Home</a>
+    <a href="{% url 'products-page' %}" class="bread-crumbs__item">Products</a>
+    {% for cat in category|get_parent_categories %}
+    {% if cat.is_leaf_node %}
+    <div class="bread-crumbs__item">{{ cat|get_lang_field:'name' }}</div>
+    {% else %}
+    <a href="{{ cat.get_absolute_url }}" class="bread-crumbs__item">{{ cat|get_lang_field:'name' }}</a>
+    {% endif %}
+    {% endfor %}
+</div>
+<section class="catalog wrap">
+    <h1 class="title">{{ category.name }}</h1>
+    <div class="catalog__content">
+        {% if brands or options %}
+        {% if page_obj %}
+        <div class="filter">
+            <div class="filter-apply">Apply</div>
+            <h2 class="filter__title">Filter<span>Clear</span></h2>
+
+           {# Brands #}
+            {% if brands %}
+            <div class="filter__checkboxs" option-id="brands">
+                <h3 class="filter__sub-title">Brands</h3>
+                {% for brand in brands %}
+                <div class="filter__checkbox" option-value-id="{{ brand.pk }}">
+                    <div class="filter__check">
+                        <img class="lazyload" data-src="{% static 'img/icons/check.svg' %}">
+                    </div>
+                    <span>{{ brand.name }}</span>
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+
+            {# Options #}
+            {% for option in options %}
+            {% comment %} Check if option is numerical {% endcomment %}
+            {% if not option.numerical %}
+            <div class="filter__checkboxs" option-id="{{ option.pk }}" name="{{ option.name }}">
+                <h3 class="filter__sub-title">{{ option.name }}</h3>
+                {# {% get_option_values items option.pk as option_values %} #}
+                {% for option_value_model in option_values %}
+                <div class="filter__checkbox" option-value-id="{{ option_value_model.pk }}"
+                    name="{{ option_value_model.name }}">
+                    <div class="filter__check">
+                        <img class="lazyload" data-src="{% static 'img/icons/check.svg' %}">
+                    </div>
+                    <span>{{ option_value_model.name|capfirst }}</span>
+                </div>
+                {% endfor %}
+            </div>
+            {% else %}
+            <div class="filter__range" option-id="{{ option.pk }}">
+                <h3 class="filter__sub-title">
+                    {{ option.name }}
+                    <div class="close">
+                        <img class="lazyload" data-src="/static/img/icons/close.svg">
+                    </div>
+                </h3>
+                <div class="filter__inputs">
+                    {# {% get_min_value_for_option option.pk items as min_value %} #}
+                    {# {% get_max_value_for_option option.pk items as max_value %} #}
+                    <input type="text" valide-value="{{ min_value }}" name="min" placeholder="from ({{ min_value }})">
+                    <input type="text" valide-value="{{ max_value }}" name="max" placeholder="to ({{ max_value }})">
+                </div>
+                <!--
+                    <div class="range-slider flat" data-ticks-position='top' style='--min:-500; --max:500; --value-a:-500; --value-b:500; --suffix:""; --text-value-a:"-500"; --text-value-b:"500";'>
+                        <input type="range" min="-500" max="500" value="-500" oninput="this.parentNode.style.setProperty('--value-a',this.value); this.parentNode.style.setProperty('--text-value-a', JSON.stringify(this.value))">
+                        <output></output>
+                        <input type="range" min="-500" max="500" value="500" oninput="this.parentNode.style.setProperty('--value-b',this.value); this.parentNode.style.setProperty('--text-value-b', JSON.stringify(this.value))">
+                        <output></output>
+                        <div class='range-slider__progress'></div>
+                    </div>   -->
+            </div>
+            {% endif %}
+            {% endfor %}
+        </div>
+        {% endif %}
+        {% endif %}
+        {% if page_obj %}
+        <div class="catalog__items">
+            {% for item in page_obj.object_list %}
+            <a href="{% url 'equipment_single' item.pk %}" class="catalog__item" product-id="{{ item.pk }}">
+                {# <img class="catalog__img lazyload" data-src="{{ item.pk|get_first_image_for_equip }}" alt=""> #}
+                <img class="catalog__img lazyload" data-src="" alt="">
+                {% if item.calc_price %}
+                <div class="catalog__price">{{ item.calc_price }} EUR</div>
+                {% else %}
+                <div class="catalog__price">On order</div>
+                {% endif %}
+                {% if item.supply_time %}
+                <div class="catalog__delivery">deliver time: {{ item.supply_time }}</div>
+                {% endif %}
+                {% if item.article %}
+                <h3 class="catalog__art">Article: {{ item.article }}</h3>
+                {% endif %}
+                <h2 class="catalog__name">{{ item.name }}</h2>
+                <div class="catalog__count">
+                    <div class="catalog__minus">-</div>
+                    <input id="catalog-count" type="text" value="1">
+                    <div class="catalog__plus">+</div>
+                </div>
+                <div class="btn">
+                    Detail
+                </div>
+            </a>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="catalog__empty">
+            The directory is empty :(
+        </div>
+        {% endif %}
+
+        {% if page_obj.paginator.num_pages > 1 %}
+
+        <div class="pagination">
+            {% if page_obj.number > 1%}
+            <a href="?page=1" class="pagination__start">
+                First page
+            </a>
+            <a href="?page={{ page_obj.previous_page_number }}" class="pagination__before"> &laquo; </a>
+            {% endif %}
+            <div class="pagination__pages">
+                {% for page in pages %}
+                <a {% if page_obj.number != page %} href="?page={{ page }}" {% endif %}
+                    class="pagination__page{% if page_obj.number == page %} active{% endif %}">
+                    {{ page }}</a>,
+                {% endfor %}
+            </div>
+            {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}" class="pagination__after"> &raquo; </a>
+            <a href="?page={{ page_obj.paginator.num_pages }}" class="pagination__end">
+                Last page
+            </a>
+            {% endif %}
+            {% endif %}
+        </div>
+        {% comment %}
+    </div> {% endcomment %}
+</section>
+{% endblock %}

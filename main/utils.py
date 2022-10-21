@@ -46,6 +46,16 @@ def uuid_generator():
     return uuid.uuid4().hex
 
 
+def get_slug_by_lang(_obj):
+    try:
+        if settings.CURRENT_SITE_LANG == "ru":
+            return getattr(_obj, f"slug_ru")
+        else:
+            return getattr(_obj, f"slug")
+    except AttributeError:
+        return ""
+
+
 def get_model_attr_by_lang(_obj, _field):
     try:
         if settings.CURRENT_SITE_LANG == "ru":

@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}AirSyst - Регистрация{% endblock %}
+{% block content %}
+
+<section class="auth">
+    <form class="sing">
+        <div class="sing__title">
+            Авторизация
+        </div>
+        <input type="email" name="email" placeholder="Email">
+        <input type="password" name="pass" placeholder="Введите пароль">
+        <label for="remember">
+            <input type="checkbox" name="remember" id="remember">
+            Запомнить меня на этом компьютере
+        </label>
+        <input type="submit" class="btn" value="Войти">
+        <a href="{% url 'forgot-page' %}">Забыли свой пароль?</a>
+        <a href="{% url 'register-page' %}">Зарегистрироваться</a>
+    </form>
+</section>
+
+{% endblock %}

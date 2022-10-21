@@ -11,10 +11,10 @@
 </div>
 <section class="air wrap">
     <h1 class="title">{{ category.name }}</h1>
-    {% if sub_categories %}
+    {% if category_childs %}
     <div class="air__items">
-        {% for sub_category in sub_categories %}
-        <a href="#" class="air__item">
+        {% for sub_category in category_childs %}
+        <a href="{{ sub_category.get_absolute_url }}" class="air__item">
             {% if sub_category.image %}
             <img class="lazyload" data-src="{{ sub_category.image.url }}" alt="">
             {% endif %}

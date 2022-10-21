@@ -6,6 +6,13 @@ urlpatterns = [
     # Errors
     path("404/", views.page_404, name="error-404"),
     path("500/", views.page_500, name="error-500"),
+    # Profile
+    path("profile/", views.profile_view, name="profile-page"),
+    path("history/", views.history_view, name="history-page"),
+    path("forgot/", views.forgot_view, name="forgot-page"),
+    path("login/", views.login_view, name="login-page"),
+    path("register/", views.register_view, name="register-page"),
+    path("logout/", views.logout_view, name="logout"),
     # Header
     path("about/", views.about_page, name="about-page"),
     path("projects/", views.projects_page, name="projects-page"),
@@ -23,5 +30,10 @@ urlpatterns = [
         "products/<slug:category_slug>/",
         views.product_category,
         name="product-category-by-slug",
+    ),
+    path(
+        "products/catalog/<slug:category_slug>/",
+        views.product_catalog_view,
+        name="product-catalog-by-slug",
     ),
 ]

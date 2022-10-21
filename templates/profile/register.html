@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}AirSyst - Регистрация{% endblock %}
+{% block content %}
+
+<section class="reg">
+    <form class="sing">
+        <div class="sing__title">
+            Зарегистрироваться
+        </div>
+        <input type="email" name="email" placeholder="Email">
+        <input type="password" name="pass" placeholder="Введите пароль">
+        <input type="password" name="pass-repeat" placeholder="Повторите пароль">
+        <input type="submit" class="btn" value="Зарегистрироваться">
+    </form>
+</section>
+
+{% endblock %}

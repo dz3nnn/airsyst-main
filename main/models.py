@@ -1,7 +1,7 @@
 from django.db import models
 from mptt.models import MPTTModel, TreeForeignKey
 from django.utils.text import slugify
-from .utils import lat_to_cyr_slugify
+from .utils import lat_to_cyr_slugify, get_slug_by_lang
 from tinymce import models as tinymce_models
 from django.utils.translation import gettext as _
 from .utils import uuid_generator
@@ -46,6 +46,18 @@ class Category(MPTTModel):
         self.slug = slugify(self.name)
         self.slug_ru = lat_to_cyr_slugify(self.name_ru)
         super(Category, self).save(*args, **kwargs)
+
+    def get_absolute_url(self):
+        if self.is_leaf_node():
+            return reverse(
+                "product-catalog-by-slug",
+                kwargs={"category_slug": get_slug_by_lang(self)},
+            )
+        else:
+            return reverse(
+                "product-category-by-slug",
+                kwargs={"category_slug": get_slug_by_lang(self)},
+            )
 
 
 class Country(models.Model):
@@ -175,3 +187,189 @@ class Information(models.Model):
 
     def __str__(self):
         return "%s (uid:%s)" % (self.description, self.uid)
+
+
+class Equipment_Item(models.Model):
+
+    name = models.CharField(max_length=100, verbose_name="Название", null=True)
+    category = models.ForeignKey(
+        Category,
+        on_delete=models.CASCADE,
+        verbose_name="Категория",
+        null=True,
+        blank=True,
+    )
+    brand = models.ForeignKey(
+        Brand, on_delete=models.CASCADE, verbose_name="Бренд", null=True, blank=True
+    )
+    country_create = models.ForeignKey(
+        Country,
+        on_delete=models.CASCADE,
+        verbose_name="Страна изготовителя",
+        null=True,
+        blank=True,
+    )
+    article = models.CharField(
+        max_length=8, verbose_name="Артикул", null=True, blank=True
+    )
+    price = models.DecimalField(
+        max_digits=10,
+        decimal_places=2,
+        verbose_name="Цена поставщика (EUR)",
+        null=True,
+        blank=True,
+    )
+    delivery_time = models.CharField(
+        max_length=100, verbose_name="Срок доставки", null=True, blank=True
+    )
+    supply_time = models.CharField(
+        max_length=100, verbose_name="Срок поставки", null=True, blank=True
+    )
+    warranty = models.CharField(
+        max_length=100, verbose_name="Гарантия", null=True, blank=True
+    )
+
+    weight = models.DecimalField(
+        max_digits=10, decimal_places=2, verbose_name="Вес (кг)", null=True, blank=True
+    )
+    width = models.DecimalField(
+        max_digits=10,
+        decimal_places=2,
+        verbose_name="Ширина (см)",
+        null=True,
+        blank=True,
+    )
+    length = models.DecimalField(
+        max_digits=10,
+        decimal_places=2,
+        verbose_name="Длина (см)",
+        null=True,
+        blank=True,
+    )
+    height = models.DecimalField(
+        max_digits=10,
+        decimal_places=2,
+        verbose_name="Высота (см)",
+        null=True,
+        blank=True,
+    )
+
+    description = tinymce_models.HTMLField(
+        verbose_name="Описание", null=True, blank=True
+    )
+
+    class Meta:
+        verbose_name = "Оборудование"
+        verbose_name_plural = "Оборудование"
+
+    def __str__(self):
+        return "%s (art:%s)" % (self.name, self.article)
+
+
+class Equipment_Image(models.Model):
+    equip = models.ForeignKey(
+        Equipment_Item, on_delete=models.CASCADE, verbose_name="Проект"
+    )
+    image = models.ImageField(upload_to="equip_images/", verbose_name="Изображение")
+
+    class Meta:
+        verbose_name = "Изображение оборудования"
+        verbose_name_plural = "Изображения оборудования"
+
+    def __str__(self):
+        return "изображение (id:%s)" % (self.pk)
+
+
+class Option(models.Model):
+
+    name = models.CharField(
+        max_length=100, verbose_name="Характеристика", null=True, blank=True
+    )
+    numerical = models.BooleanField(verbose_name="Числовое", default=False)
+
+    class Meta:
+        verbose_name = "Характеристика"
+        verbose_name_plural = "Характеристики"
+        ordering = ["name"]
+
+    def __str__(self):
+        return "%s" % (self.name)
+
+
+class OptionValue(models.Model):
+    """Значение характеристики"""
+
+    name = models.CharField(
+        max_length=100, verbose_name="Значение", null=True, blank=True
+    )
+
+    class Meta:
+        verbose_name = "Значение характеристики"
+        verbose_name_plural = "Значения характеристики"
+        ordering = ["name"]
+
+    def __str__(self):
+        return "%s" % (self.name)
+
+
+class OptionRelation(models.Model):
+    """Связь характеристик"""
+
+    equipment = models.ForeignKey(
+        Equipment_Item,
+        on_delete=models.CASCADE,
+        verbose_name="Оборудование",
+        null=True,
+        blank=True,
+    )
+    option = models.ForeignKey(
+        Option,
+        on_delete=models.CASCADE,
+        verbose_name="Характеристика",
+        null=True,
+        blank=True,
+    )
+    option_value = models.ForeignKey(
+        OptionValue,
+        on_delete=models.CASCADE,
+        verbose_name="Значение",
+        null=True,
+        blank=True,
+    )
+
+    class Meta:
+        verbose_name = "Связь характеристик"
+        verbose_name_plural = "Связи арактеристик"
+
+    def __str__(self):
+        return "%s(%s - %s)" % (
+            self.equipment.name,
+            self.option.name,
+            self.option_value.name,
+        )
+
+
+class Certificate(models.Model):
+    description = models.CharField(
+        max_length=50, verbose_name="Описание", null=True, blank=True
+    )
+    image = models.ImageField(
+        upload_to="certificate_images/",
+        verbose_name="Изображение",
+        null=True,
+        blank=True,
+    )
+    equipment = models.ForeignKey(
+        Equipment_Item,
+        on_delete=models.PROTECT,
+        verbose_name="Оборудование",
+        null=True,
+        blank=True,
+    )
+
+    class Meta:
+        verbose_name = "Сертификат"
+        verbose_name_plural = "Сертификаты"
+
+    def __str__(self):
+        return "%s" % (self.description)

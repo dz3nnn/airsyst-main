@@ -1,0 +1,216 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load main_extras %}
+{% block title %}AirSyst - History{% endblock %}
+{% block add_css %}
+<link rel="stylesheet" href="{% static 'css/air-datepicker.css' %}">
+{% endblock %}
+{% block content %}
+<section class="history wrap">
+    <div class="history__time">
+        <h1 class="title">
+            История заказов
+        </h1>
+        <input type="text" id="data" placeholder="Укажите интервал времени">
+        <div class="btn">
+            Далее
+        </div>
+    </div>
+
+    <div class="shop-cart__content">
+        <div class="shop-cart__head">
+            <div class="filter__checkbox" name="select-all">
+                <div class="filter__check">
+                    <img src="{% static 'img/icons/check.svg' %}">
+                </div>
+                <span>Выбрать все</span>
+            </div>
+            <div class="shop-cart__delete-all">
+                <img src="{% static 'img/icons/delete.svg' %}">
+                Удалить выбранное
+            </div>
+        </div>
+        <div class="shop-cart__body">
+            <div class="shop-cart__body__content">
+                <div class="shop-cart__header">
+                    <div class="shop-cart__col"></div>
+                    <div class="shop-cart__col"></div>
+                    <div class="shop-cart__col">
+                        Наименование
+                    </div>
+                    <div class="shop-cart__col">Цена</div>
+                    <div class="shop-cart__col">К-во</div>
+                    <div class="shop-cart__col">Стоимость</div>
+                    <div class="shop-cart__col"></div>
+                </div>
+                <div class="shop-cart__items">
+                    <div class="shop-cart__item">
+                        <div class="shop-cart__col select">
+                            <div class="filter__checkbox">
+                                <div class="filter__check">
+                                    <img src="{% static 'img/icons/check.svg' %}">
+                                </div>
+                            </div>
+                        </div>
+                        <a href="/" class="shop-cart__col shop-cart__img">
+                            <img src="{% static 'img/images/catalog-item.jpg' %}" alt="">
+                        </a>
+                        <div class="shop-cart__col shop-cart__name">
+                            ВОЗДУШНЫЙ ФИЛЬТР ECO AE-704-22
+                        </div>
+                        <div class="shop-cart__col shop-cart__price">
+                            150 BYN
+                        </div>
+                        <div class="shop-cart__col shop-cart__count">
+                            <div class="catalog__count">
+                                <div class="catalog__minus">-</div>
+                                <input id="catalog-count" type="text" value="1">
+                                <div class="catalog__plus">+</div>
+                            </div>
+                        </div>
+                        <div class="shop-cart__col shop-cart__full-price">
+                            150 BYN
+                        </div>
+                        <div class="shop-cart__col shop-cart__delete">
+                            <img src="{% static 'img/icons/delete.svg' %}" alt="">
+                        </div>
+                    </div>
+                    <div class="shop-cart__item">
+                        <div class="shop-cart__col select">
+                            <div class="filter__checkbox">
+                                <div class="filter__check">
+                                    <img src="{% static 'img/icons/check.svg' %}">
+                                </div>
+                            </div>
+                        </div>
+                        <a href="/" class="shop-cart__col shop-cart__img">
+                            <img src="{% static 'img/images/catalog-item.jpg' %}" alt="">
+                        </a>
+                        <div class="shop-cart__col shop-cart__name">
+                            ВОЗДУШНЫЙ ФИЛЬТР ECO AE-704-22
+                        </div>
+                        <div class="shop-cart__col shop-cart__price">
+                            150 BYN
+                        </div>
+                        <div class="shop-cart__col shop-cart__count">
+                            <div class="catalog__count">
+                                <div class="catalog__minus">-</div>
+                                <input id="catalog-count" type="text" value="1">
+                                <div class="catalog__plus">+</div>
+                            </div>
+                        </div>
+                        <div class="shop-cart__col shop-cart__full-price">
+                            150 BYN
+                        </div>
+                        <div class="shop-cart__col shop-cart__delete">
+                            <img src="{% static 'img/icons/delete.svg' %}" alt="">
+                        </div>
+                    </div>
+                    <div class="shop-cart__item">
+                        <div class="shop-cart__col select">
+                            <div class="filter__checkbox">
+                                <div class="filter__check">
+                                    <img src="{% static 'img/icons/check.svg' %}">
+                                </div>
+                            </div>
+                        </div>
+                        <a href="/" class="shop-cart__col shop-cart__img">
+                            <img src="{% static 'img/images/catalog-item.jpg' %}" alt="">
+                        </a>
+                        <div class="shop-cart__col shop-cart__name">
+                            ВОЗДУШНЫЙ ФИЛЬТР ECO AE-704-22
+                        </div>
+                        <div class="shop-cart__col shop-cart__price">
+                            150 BYN
+                        </div>
+                        <div class="shop-cart__col shop-cart__count">
+                            <div class="catalog__count">
+                                <div class="catalog__minus">-</div>
+                                <input id="catalog-count" type="text" value="1">
+                                <div class="catalog__plus">+</div>
+                            </div>
+                        </div>
+                        <div class="shop-cart__col shop-cart__full-price">
+                            150 BYN
+                        </div>
+                        <div class="shop-cart__col shop-cart__delete">
+                            <img src="{% static 'img/icons/delete.svg' %}" alt="">
+                        </div>
+                    </div>
+                    <div class="shop-cart__item">
+                        <div class="shop-cart__col select">
+                            <div class="filter__checkbox">
+                                <div class="filter__check">
+                                    <img src="{% static 'img/icons/check.svg' %}">
+                                </div>
+                            </div>
+                        </div>
+                        <a href="/" class="shop-cart__col shop-cart__img">
+                            <img src="{% static 'img/images/catalog-item.jpg' %}" alt="">
+                        </a>
+                        <div class="shop-cart__col shop-cart__name">
+                            ВОЗДУШНЫЙ ФИЛЬТР ECO AE-704-22
+                        </div>
+                        <div class="shop-cart__col shop-cart__price">
+                            150 BYN
+                        </div>
+                        <div class="shop-cart__col shop-cart__count">
+                            <div class="catalog__count">
+                                <div class="catalog__minus">-</div>
+                                <input id="catalog-count" type="text" value="1">
+                                <div class="catalog__plus">+</div>
+                            </div>
+                        </div>
+                        <div class="shop-cart__col shop-cart__full-price">
+                            150 BYN
+                        </div>
+                        <div class="shop-cart__col shop-cart__delete">
+                            <img src="{% static 'img/icons/delete.svg' %}" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="shop-cart__form">
+                <div class="shop-cart__sub-title">
+                    Ваш заказ
+                </div>
+                <div class="shop-cart__form__item shop-cart__form__count">
+                    <div class="shop-cart__form__text">
+                        Выбрано товаров:
+                    </div>
+                    <div class="shop-cart__form__value">
+                        4 шт.
+                    </div>
+                </div>
+                <div class="shop-cart__form__item shop-cart__form__wt">
+                    <div class="shop-cart__form__text">
+                        Вес заказа:
+                    </div>
+                    <div class="shop-cart__form__value">
+                        0,47 кг.
+                    </div>
+                </div>
+                <div class="shop-cart__form__item shop-cart__form__total">
+                    <div class="shop-cart__form__text">
+                        Итого:
+                    </div>
+                    <div class="shop-cart__form__value">
+                        1 675 BYN
+                    </div>
+                </div>
+                <a href="/" class="btn">Повторить заказ</a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block add_js %}
+<script src="{% static 'js/air-datepicker.js' %}"></script>
+<script>
+    new AirDatepicker('#data', {
+        range: true,
+        multipleDatesSeparator: ' - '
+    });
+</script>
+{% endblock %}
