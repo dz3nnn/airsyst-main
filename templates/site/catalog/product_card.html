@@ -1,0 +1,174 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load mptt_tags %}
+{% load main_extras %}
+{% block title %}AirSyst - {{ item.name }}{% endblock %}
+{% block content %}
+<div class="bread-crumbs wrap">
+    <a href="/" class="bread-crumbs__item">Home</a>
+    <a href="{% url 'products-page' %}" class="bread-crumbs__item">Products</a>
+    {% with item.category as category %}
+    {% for cat in category|get_parent_categories %}
+    <a href="{{ cat.get_absolute_url }}" class="bread-crumbs__item">{{ cat|get_lang_field:'name' }}</a>
+    {% endfor %}
+    <div class="bread-crumbs__item">{{ item.name }}</div>
+    {% endwith %}
+</div>
+<section class="card wrap">
+    <div class="card__top">
+        {% with item.get_all_images_url as images %}
+        {% if images %}
+        <div class="card__sliders">
+            <div class="card__slider-main">
+                <div class="swiper-wrapper">
+                    {% for image_url in images %}
+                    <div class="swiper-slide">
+                        <img class='slider-img' src="{{ image_url }}" alt="">
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="card__slider-thumbs">
+                <div class="swiper-wrapper">
+                    {% for image_url in images %}
+                    <div class="swiper-slide">
+                        <img class="lazyload" data-src="{{ image_url }}" alt="">
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        {% endif %}
+        {% endwith %}
+        <div class="card__info" product-id="{{ item.pk }}">
+            <h1 class="card__name">{{ item.name }}</h1>
+            <h2 class="card__art">ARTICLE: {{ item.article }}</h2>
+            <div class="card__price-and-delivery">
+                <h3 class="card__price">
+                    <div class="catalog__price">{{ item.get_final_price }}</div>
+                    <div class="catalog__delivery">delivery time: {{ item.supply_time }}</div>
+                </h3>
+                <div class="catalog__count">
+                    <div class="catalog__minus">-</div>
+                    <input id="catalog-count" type="text" value="1">
+                    <div class="catalog__plus">+</div>
+                </div>
+                {% if false %}
+                {% if certificates %}<a href="" download="" class="show-certificate">View Documentation</a>{% endif %}
+                {% endif %}
+            </div>
+            <div class="card__delivery-and-warranty">
+                <div class="card__delivery">
+                    <img class="lazyload" data-src="{% static 'airsyst_app/img/icons/delivery.svg' %}" alt="">
+                    Delivery <span>{{ item.delivery_time }}</span>
+                </div>
+                <div class="card__warranty">
+                    <img class="lazyload" data-src="{% static 'airsyst_app/img/icons/warranty.png' %}" alt="">
+                    Warranty <span>{{ item.warranty }}</span>
+                </div>
+            </div>
+            <div class="btn to-order">
+                <img class="lazyload" data-src="{% static 'airsyst_app/img/icons/to-basket.svg' %}" alt="">
+                Order
+            </div>
+        </div>
+    </div>
+    <div class="card__specifications">
+        <div class="card__thumbs">
+            <div class="card__thumb active">CHARACTERISTICS</div>
+            <div class="card__thumb">DESCRIPTION</div>
+        </div>
+        <div class="card__items">
+            <div class="card__item active">
+                {% for option_model in options %}
+                <div class="card__row">
+                    <h3 class="card__spec-name">{{ option_model.option.name }}</h3>
+                    <h3 class="card__value">{{ option_model.option_value.name }}</h3>
+                </div>
+                {% endfor %}
+                <br>
+                {% if item.brand.country.flag %}
+                <div class="card__row">
+                    <h3 class="card__spec-name">Country brand</h3>
+                    <h3 class="card__value">
+                        <img class="lazyload" data-src="{{ item.brand.country.flag.url }}" alt="">
+                    </h3>
+                </div>
+                {% endif %}
+                {% if item.country_create.flag %}
+                <div class="card__row">
+                    <h3 class="card__spec-name">Manufacturer country</h3>
+                    <h3 class="card__value">
+                        <img class="lazyload" data-src="{{ item.country_create.flag.url }}" alt="">
+                    </h3>
+                </div>
+                {% endif %}
+                {% if item.weight %}
+                <div class="card__row">
+                    <h3 class="card__spec-name">Weight (kg)</h3>
+                    <h3 class="card__value">{{ item.weight }}</h3>
+                </div>
+                {% endif %}
+                {% if item.width %}
+                <div class="card__row">
+                    <h3 class="card__spec-name">Width (cm)</h3>
+                    <h3 class="card__value">{{ item.width }}</h3>
+                </div>
+                {% endif %}
+                {% if item.width %}
+                <div class="card__row">
+                    <h3 class="card__spec-name">
+                        Length (cm)
+                    </h3>
+                    <h3 class="card__value">
+                        {{ item.length }}
+                    </h3>
+                </div>
+                {% endif %}
+                {% if item.width %}
+                <div class="card__row">
+                    <h3 class="card__spec-name">
+                        Height (cm)
+                    </h3>
+                    <h3 class="card__value">
+                        {{ item.height }}
+                    </h3>
+                </div>
+                {% endif %}
+            </div>
+            <div class="card__item ">
+                <h3 class="card__text">
+                    {{ item.description|safe }}
+                </h3>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+{% block in_div_modal %}
+{% if certificates %}
+<div class="close">
+    <img class="lazyload" data-src="{% static 'airsyst_app/img/icons/close.svg' %}" alt="">
+</div>
+<div class="card-certificate-slider">
+    <div class="certificates__slider swiper">
+        <div class="swiper-wrapper">
+            {% for certificate in certificates %}
+            {% if certificate.image %}
+            <div class="swiper-slide certificates__slide">
+                <img class="lazyload" data-src="{{ certificate.image.url }}" alt="сертификат">
+                <div class="certificates__name">
+                    {{ certificate.name }}
+                </div>
+            </div>
+            {% endif %}
+            {% endfor %}
+        </div>
+        <div class="swiper-button-next">
+        </div>
+        <div class="swiper-button-prev">
+        </div>
+    </div>
+</div>
+{% endif %}
+{% endblock %}

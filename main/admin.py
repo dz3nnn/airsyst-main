@@ -17,11 +17,9 @@ from .models import (
 )
 
 
+@admin.register(Category)
 class CategoryAdmin(MPTTModelAdmin):
     readonly_fields = ("slug", "slug_ru")
-
-
-admin.site.register(Category, CategoryAdmin)
 
 
 @admin.register(Brand, Company, Country, Project_Image, Information)
@@ -60,6 +58,7 @@ class OptionRelationInline(admin.StackedInline):
         return super().formfield_for_foreignkey(db_field, request, **kwargs)
 
 
+@admin.register(Equipment_Item)
 class EquipmentItemAdmin(admin.ModelAdmin):
     inlines = [OptionRelationInline, EquipImageInline, CertificateInline]
     search_fields = ["article"]

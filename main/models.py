@@ -4,7 +4,7 @@ from django.utils.text import slugify
 from .utils import lat_to_cyr_slugify, get_slug_by_lang
 from tinymce import models as tinymce_models
 from django.utils.translation import gettext as _
-from .utils import uuid_generator
+from .utils import uuid_generator, article_generator
 from django.conf import settings
 from django.urls import reverse
 
@@ -14,6 +14,8 @@ SERVICE_CHOICES = (
     ("REPAIR", _("Сервис")),
     ("SELL", _("Продажи")),
 )
+
+NO_IMAGE_URL = f"{settings.MEDIA_URL}category_images/no_image.jpg"
 
 
 class Category(MPTTModel):
@@ -85,6 +87,13 @@ class Brand(models.Model):
         upload_to="brand_logos/", verbose_name="Логотип", null=True, blank=True
     )
 
+    @property
+    def get_logo(self):
+        if self.logo:
+            return self.logo.url
+        else:
+            return NO_IMAGE_URL
+
     class Meta:
         verbose_name = "Бренд"
         verbose_name_plural = "Бренды"
@@ -131,14 +140,13 @@ class Project(models.Model):
         if images:
             return images.first().image.url
         else:
-            return f"{settings.MEDIA_URL}category_images/no_image.jpg"
+            return NO_IMAGE_URL
 
     @property
     def get_all_images(self):
         images = Project_Image.objects.filter(project__pk=self.pk)
         return images
 
-    @property
     def get_absolute_url(self):
         return reverse("project-single-page", kwargs={"project_id": self.pk})
 
@@ -209,9 +217,7 @@ class Equipment_Item(models.Model):
         null=True,
         blank=True,
     )
-    article = models.CharField(
-        max_length=8, verbose_name="Артикул", null=True, blank=True
-    )
+    article = models.CharField(max_length=8, verbose_name="Артикул", blank=True)
     price = models.DecimalField(
         max_digits=10,
         decimal_places=2,
@@ -257,6 +263,44 @@ class Equipment_Item(models.Model):
     description = tinymce_models.HTMLField(
         verbose_name="Описание", null=True, blank=True
     )
+    slug = models.SlugField(editable=False, unique=True, blank=True)
+    slug_ru = models.SlugField(editable=False, blank=True)
+
+    def get_absolute_url(self):
+        return reverse(
+            "product-card-by-article",
+            kwargs={"product_article": self.article},
+        )
+
+    @property
+    def get_first_image_url(self):
+        images = Equipment_Image.objects.filter(equip__pk=self.pk)
+        if images:
+            return images.first().image.url
+        else:
+            return NO_IMAGE_URL
+
+    @property
+    def get_all_images_url(self):
+        result = []
+        images = Equipment_Image.objects.filter(equip__pk=self.pk)
+        if images:
+            for image in images:
+                result.append(image.image.url)
+        else:
+            result.append(NO_IMAGE_URL)
+        return result
+
+    @property
+    def get_final_price(self):
+        if self.price:
+            return self._calc_price(self.price)
+        else:
+            return _("On order")
+
+    def _calc_price(self, price):
+        valute = "EUR"
+        return f"{price} {valute}"
 
     class Meta:
         verbose_name = "Оборудование"
@@ -264,6 +308,18 @@ class Equipment_Item(models.Model):
 
     def __str__(self):
         return "%s (art:%s)" % (self.name, self.article)
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.name)
+        self.slug_ru = lat_to_cyr_slugify(self.name_ru)
+
+        if not self.article:
+            art = article_generator()
+            while Equipment_Item.objects.filter(article=art):
+                art = article_generator()
+            self.article = art
+
+        super(Equipment_Item, self).save(*args, **kwargs)
 
 
 class Equipment_Image(models.Model):

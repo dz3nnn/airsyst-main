@@ -36,4 +36,12 @@ urlpatterns = [
         views.product_catalog_view,
         name="product-catalog-by-slug",
     ),
+    path(
+        "product/<slug:product_article>/",
+        views.product_card_view,
+        name="product-card-by-article",
+    ),
+    # Requests
+    path("send_feedback/", views.send_feedback_view, name="send-feedback"),
+    path("search/", views.search_view, name="search-request"),
 ]

@@ -1,92 +1,70 @@
 {% extends "base.html" %}
 {% load static %}
-{% block title %}AirSyst - Главная{% endblock %}
+{% load i18n %}
+{% block title %}AirSyst - Index{% endblock %}
 {% block content %}
 <section class="bid wrap">
     <div class="bid__items">
         <a href="{% url 'products-page' %}" class="bid__item">
             <div class="bid__preview">
-                <img class="lazyload" data-src="{% static 'img/images/bid-3.png' %}" alt="ОБОРУДОВАНИЕ">
-                <h2 class="bid__name">PRODUCTS</h2>
+                <img class="lazyload" data-src="{% static 'img/images/bid-3.png' %}" alt="{% translate 'Equipment' %}">
+                <h2 class="bid__name">{% translate 'Products'|upper %}</h2>
             </div>
             <div class="bid__company">
                 <div class="bid__company__items">
-                    {% if equip_brands %}
                     {% for brand in equip_brands %}
-                    {% if brand.logo %}
-                    <img class="lazyload" data-src="{{ brand.logo.url }}" alt="">
-                    {% endif %}
+                        <img class="lazyload" data-src="{{ brand.get_logo }}" alt="">
                     {% endfor %}
-                    {% endif %}
                 </div>
                 <div class="bid__company__items">
-                    {% if equip_brands %}
                     {% for brand in equip_brands %}
-                    {% if brand.logo %}
-                    <img class="lazyload" data-src="{{ brand.logo.url }}" alt="">
-                    {% endif %}
+                        <img class="lazyload" data-src="{{ brand.get_logo }}" alt="">
                     {% endfor %}
-                    {% endif %}
                 </div>
             </div>
         </a>
         <a href="{% url 'service-page' %}" class="bid__item">
             <div class="bid__preview">
                 <img class="lazyload" data-src="{% static 'img/images/bid-2.png' %}" class="bid__img_right"
-                    alt="СЕРВИС И ОБСЛУЖИВАНИЕ">
-                <h2 class="bid__name">SERVICE</h2>
+                    alt="{% translate 'Service' %}">
+                <h2 class="bid__name">{% translate 'Service'|upper %}</h2>
             </div>
             <div class="bid__company">
                 <div class="bid__company__items">
-                    {% if all_brands %}
                     {% for brand in all_brands %}
-                    {% if brand.logo %}
-                    <img class="lazyload" data-src="{{ brand.logo.url }}" alt="">
-                    {% endif %}
+                        <img class="lazyload" data-src="{{ brand.get_logo }}" alt="">
                     {% endfor %}
-                    {% endif %}
                 </div>
                 <div class="bid__company__items">
-                    {% if all_brands %}
                     {% for brand in all_brands %}
-                    {% if brand.logo %}<img class="lazyload" data-src="{{ brand.logo.url }}" alt="">
-                    {% endif %}
+                        <img class="lazyload" data-src="{{ brand.get_logo }}" alt="">
                     {% endfor %}
-                    {% endif %}
                 </div>
             </div>
         </a>
         <a href="{% url 'parts-page' %}" class="bid__item">
             <div class="bid__preview">
                 <img class="lazyload" data-src="{% static 'img/images/bid-1.png' %}"
-                    alt="ЗАПЧАСТИ И РАСХОДНЫЕ МАТЕРИАЛЫ ДЛЯ КОМПРЕССОРОВ">
-                <h2 class="bid__name bid__name_first">SPARE PARTS</h2>
+                    alt="{% translate 'Spare parts' %}">
+                <h2 class="bid__name bid__name_first">{% translate 'Spare parts'|upper %}</h2>
             </div>
             <div class="bid__company">
                 <div class="bid__company__items">
-                    {% if all_brands %}
-                    {% for brand in all_brands %}
-                    {% if brand.logo %}
-                    {% if forloop.counter <= 4 %}<img class="lazyload" data-src="{{ brand.logo.url }}" alt="">{% endif %}
-                    {% endif %}
+                    {% for brand in equip_brands %}
+                        <img class="lazyload" data-src="{{ brand.get_logo }}" alt="">
                     {% endfor %}
-                    {% endif %}
                 </div>
                 <div class="bid__company__items">
-                    {% if all_brands %}
-                    {% for brand in all_brands %}
-                    {% if brand.logo %}
-                    {% if forloop.counter <= 4 %}<img class="lazyload" data-src="{{ brand.logo.url }}" alt="">{% endif %}
-                    {% endif %}
+                    {% for brand in equip_brands %}
+                        <img class="lazyload" data-src="{{ brand.get_logo }}" alt="">
                     {% endfor %}
-                    {% endif %}
                 </div>
             </div>
         </a>
     </div>
 </section>
-{% comment %}
-<section class="reviews wrap">
+<!--
+ <section class="reviews wrap">
     <h2 class="title">Отзывы о нас</h2>
     <div class="reviews__slider swiper">
         <div class="swiper-wrapper">
@@ -110,7 +88,8 @@
         <div class="swiper-button-prev"></div>
     </div>
     <a href="#" class="btn">Смотреть все отзывы</a>
-</section> {% endcomment %}
+</section> 
+--!>
 
 
 {% if false %}

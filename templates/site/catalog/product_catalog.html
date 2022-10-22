@@ -83,23 +83,16 @@
         </div>
         {% endif %}
         {% endif %}
-        {% if page_obj %}
+        {% if page_obj.count > 0 %}
         <div class="catalog__items">
             {% for item in page_obj.object_list %}
-            <a href="{% url 'equipment_single' item.pk %}" class="catalog__item" product-id="{{ item.pk }}">
-                {# <img class="catalog__img lazyload" data-src="{{ item.pk|get_first_image_for_equip }}" alt=""> #}
-                <img class="catalog__img lazyload" data-src="" alt="">
-                {% if item.calc_price %}
-                <div class="catalog__price">{{ item.calc_price }} EUR</div>
-                {% else %}
-                <div class="catalog__price">On order</div>
-                {% endif %}
+            <a href="{{ item.get_absolute_url }}" class="catalog__item" product-id="{{ item.pk }}">
+                <img class="catalog__img lazyload" data-src="{{ item.get_first_image_url }}" alt="">
+                <div class="catalog__price">{{ item.get_final_price }}</div>
                 {% if item.supply_time %}
-                <div class="catalog__delivery">deliver time: {{ item.supply_time }}</div>
+                <div class="catalog__delivery">delivery time: {{ item.supply_time }}</div>
                 {% endif %}
-                {% if item.article %}
                 <h3 class="catalog__art">Article: {{ item.article }}</h3>
-                {% endif %}
                 <h2 class="catalog__name">{{ item.name }}</h2>
                 <div class="catalog__count">
                     <div class="catalog__minus">-</div>

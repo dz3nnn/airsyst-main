@@ -1,6 +1,7 @@
 from django.utils.text import slugify as django_slugify
 from django.conf import settings
 import uuid
+import random
 
 # Slugify (Cyrillic)
 alphabet = {
@@ -71,3 +72,15 @@ def get_template_for_lang(template_name):
         return f"{template_name}_ru.html"
     else:
         return f"{template_name}.html"
+
+
+def message_to_managers():
+    pass
+
+
+def article_generator():
+    return f"{random_upper_letter()}{random_upper_letter()}{str(random.randrange(10000)).zfill(4)}"
+
+
+def random_upper_letter():
+    return chr(random.randint(ord("A"), ord("Z")))
