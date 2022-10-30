@@ -1,19 +1,20 @@
 {% extends "base.html" %}
 {% load static %}
+{% load i18n %}
 {% block title %}AirSyst - Восстановление пароля{% endblock %}
 {% block content %}
 <section class="forgot">
     <form class="sing">
         <div class="sing__title">
-            Забыли свой пароль?
+            {% translate 'Forgot your password?' %}
         </div>
         <input type="email" name="email" placeholder="Email">
         <div class="sing__text">
-            Контрольная строка для смены пароля, а также ваши регистрационные данные, будут высланы вам по Email
+            {% translate 'The control string for changing the password, as well as your registration data, will be sent to you by Email' %}
         </div>
-        <input type="submit" class="btn" value="Выслать">
-        <a href="{% url 'login-page' %}">Авторизация</a>
-        <a href="{% url 'register-page' %}">Регистрация</a>
+        <input type="submit" class="btn" value="{% translate 'Send' %}">
+        <a href="{% url 'login-page' %}">{% translate 'Sign in' %}</a>
+        <a href="{% url 'register-page' %}">{% translate 'Sign up' %}</a>
     </form>
 </section>
 {% endblock %}

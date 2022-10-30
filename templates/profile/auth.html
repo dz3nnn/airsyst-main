@@ -1,22 +1,23 @@
 {% extends "base.html" %}
 {% load static %}
+{% load i18n %}
 {% block title %}AirSyst - Регистрация{% endblock %}
 {% block content %}
 
 <section class="auth">
     <form class="sing">
         <div class="sing__title">
-            Авторизация
+            {% translate 'Authorization' %}
         </div>
-        <input type="email" name="email" placeholder="Email">
-        <input type="password" name="pass" placeholder="Введите пароль">
+        <input type="email" name="email" placeholder="{% translate 'Email' %}">
+        <input type="password" name="pass" placeholder="{% translate 'Password' %}">
         <label for="remember">
             <input type="checkbox" name="remember" id="remember">
-            Запомнить меня на этом компьютере
+            {% translate 'Remember me' %}
         </label>
-        <input type="submit" class="btn" value="Войти">
-        <a href="{% url 'forgot-page' %}">Забыли свой пароль?</a>
-        <a href="{% url 'register-page' %}">Зарегистрироваться</a>
+        <input type="submit" class="btn" value="{% translate 'Login' %}">
+        <a href="{% url 'forgot-page' %}">{% translate 'Forgot your password?' %}</a>
+        <a href="{% url 'register-page' %}">{% translate 'Sign up' %}</a>
     </form>
 </section>
 

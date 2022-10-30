@@ -92,6 +92,10 @@ def about_page(request):
     return render(request, "site/header/about.html")
 
 
+def contacts_page(request):
+    return render(request, "site/header/contacts.html")
+
+
 def service_page(request):
     return render(request, get_template_for_lang("site/service"))
 

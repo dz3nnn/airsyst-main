@@ -9,7 +9,7 @@
     <a href="{% url 'products-page' %}" class="bread-crumbs__item">Products</a>
     {% with item.category as category %}
     {% for cat in category|get_parent_categories %}
-    <a href="{{ cat.get_absolute_url }}" class="bread-crumbs__item">{{ cat|get_lang_field:'name' }}</a>
+    <a href="{{ cat.get_absolute_url }}" class="bread-crumbs__item">{{ cat.name }}</a>
     {% endfor %}
     <div class="bread-crumbs__item">{{ item.name }}</div>
     {% endwith %}

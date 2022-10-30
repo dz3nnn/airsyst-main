@@ -44,10 +44,10 @@
                 </div>
                 <h3 class="projects__customer">{{ project.company.name }}</h3>
                 <h3 class="projects__name">
-                    {{ project|get_lang_field:"title" }}
+                    {{ project.title }}
                 </h3>
                 <h4 class="projects__descr">
-                    {{ project|get_lang_field:"description"|remove_root_tag|truncatechars_html:250 }}
+                    {{ project.description|remove_root_tag|truncatechars_html:250 }}
                 </h4>
                 <a href="{{ project.get_absolute_url }}" class="btn">{% translate 'Detail' %}</a>
             </div>

@@ -8,9 +8,9 @@
     <a href="{% url 'products-page' %}" class="bread-crumbs__item">Products</a>
     {% for cat in category|get_parent_categories %}
     {% if cat.is_leaf_node %}
-    <div class="bread-crumbs__item">{{ cat|get_lang_field:'name' }}</div>
+    <div class="bread-crumbs__item">{{ cat.name }}</div>
     {% else %}
-    <a href="{{ cat.get_absolute_url }}" class="bread-crumbs__item">{{ cat|get_lang_field:'name' }}</a>
+    <a href="{{ cat.get_absolute_url }}" class="bread-crumbs__item">{{ cat.name }}</a>
     {% endif %}
     {% endfor %}
 </div>

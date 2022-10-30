@@ -15,6 +15,7 @@ urlpatterns = [
     path("logout/", views.logout_view, name="logout"),
     # Header
     path("about/", views.about_page, name="about-page"),
+    path("contacts/", views.contacts_page, name="contacts-page"),
     path("projects/", views.projects_page, name="projects-page"),
     path(
         "project/<int:project_id>/",

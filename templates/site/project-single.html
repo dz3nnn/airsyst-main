@@ -19,9 +19,9 @@
         </div>
     </div>
     <h3 class="projects__customer">{{ project.company.name }}</h3>
-    <h3 class="projects__name">{{ project|get_lang_field:"title" }} </h3>
+    <h3 class="projects__name">{{ project.title }} </h3>
     <h4 class="projects__descr">
-        {{ project|get_lang_field:"description"|remove_root_tag }}
+        {{ project.description|remove_root_tag }}
     </h4>
 </div>
 {% if images %}

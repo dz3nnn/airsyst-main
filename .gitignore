@@ -10,3 +10,5 @@ pipe
 static
 static_production
 media
+
+.mypy_cache
