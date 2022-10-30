@@ -7,18 +7,10 @@ from django.shortcuts import redirect
 from django.contrib.auth.models import User
 from django.utils.translation import gettext as _
 from django.core.paginator import Paginator
-from django.core import serializers
 
-from main.models import Category, Equipment_Item, Project, Brand
-from .utils import (
-    get_template_for_lang,
-    message_to_managers,
-    article_generator,
-    get_model_attr_by_lang,
-)
-
-
-import json
+from main.models import Category, Equipment_Item, Option, OptionRelation, Project, Brand
+from .helps import apply_filter_for_equip
+from .utils import get_template_for_lang, message_to_managers
 
 # Errors
 def page_404(request, exception=None):
@@ -161,11 +153,26 @@ def product_catalog_view(request, category_slug):
         category = get_object_or_404(Category, slug=category_slug)
 
     items = Equipment_Item.objects.filter(category=category)
+    items_pk = items.values_list("pk", flat=True)
+    relations = OptionRelation.objects.filter(equipment__pk__in=items_pk).values_list(
+        "option__pk", flat=True
+    )
+    options = Option.objects.filter(pk__in=relations)
+
+    items = apply_filter_for_equip(request, items)
+
     paginator = Paginator(items, 15)
+    context = {
+        "category": category,
+        "page_obj": paginator,
+        "items": items,
+        "brands": Brand.objects.all(),
+        "options": options,
+    }
     return render(
         request,
         "site/catalog/product_catalog.html",
-        {"category": category, "page_obj": paginator},
+        context,
     )
 
 

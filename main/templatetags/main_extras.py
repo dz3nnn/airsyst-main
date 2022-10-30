@@ -1,9 +1,13 @@
 from django import template
-from main.models import Category, Information
 from django.conf import settings
-from ..utils import get_model_attr_by_lang
-import re
 from typing import List
+from django.db.models import Q
+
+import re
+
+from main.models import Category, Information, Option, OptionRelation, OptionValue
+from main.utils import get_model_attr_by_lang
+from main.helps import to_float
 
 register = template.Library()
 
@@ -121,3 +125,44 @@ def have_childs(value: Category) -> bool:
 def get_parent_categories(value: Category) -> List[Category]:
     if value:
         return value.get_family()
+
+
+# Old
+
+
+@register.simple_tag
+def get_min_value_for_option(option_id, items):
+    items_pk = items.values_list("pk", flat=True)
+    relations = OptionRelation.objects.filter(equipment__pk__in=items_pk).values_list(
+        "option_value__pk"
+    )
+    opt_values = OptionValue.objects.filter(pk__in=relations).values_list(
+        "name", flat=True
+    )
+    float_values = to_float(opt_values)
+    return min(float_values, default=0)
+
+
+@register.simple_tag
+def get_max_value_for_option(option_id, items):
+    items_pk = items.values_list("pk", flat=True)
+    relations = OptionRelation.objects.filter(equipment__pk__in=items_pk).values_list(
+        "option_value__pk"
+    )
+    opt_values = OptionValue.objects.filter(pk__in=relations).values_list(
+        "name", flat=True
+    )
+    float_values = to_float(opt_values)
+    return max(float_values, default=0)
+
+
+@register.simple_tag
+def get_option_values(equips, option_id):
+    equips_id = equips.values_list("pk", flat=True)
+    relations = (
+        OptionRelation.objects.filter(equipment__pk__in=equips_id, option__pk=option_id)
+        .values_list("option_value_id", flat=True)
+        .distinct()
+    )
+    result = OptionValue.objects.filter(pk__in=relations).order_by("name")
+    return result

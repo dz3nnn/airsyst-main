@@ -22,7 +22,16 @@ class CategoryAdmin(MPTTModelAdmin):
     readonly_fields = ("slug", "slug_ru")
 
 
-@admin.register(Brand, Company, Country, Project_Image, Information)
+@admin.register(
+    Brand,
+    Company,
+    Country,
+    Project_Image,
+    Information,
+    Option,
+    OptionRelation,
+    OptionValue,
+)
 class DefaultAdmin(admin.ModelAdmin):
     pass
 

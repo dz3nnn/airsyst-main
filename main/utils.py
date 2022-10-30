@@ -1,5 +1,6 @@
 from django.utils.text import slugify as django_slugify
 from django.conf import settings
+
 import uuid
 import random
 
