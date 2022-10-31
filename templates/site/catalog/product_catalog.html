@@ -17,8 +17,8 @@
 <section class="catalog wrap">
     <h1 class="title">{{ category.name }}</h1>
     <div class="catalog__content">
+        {% if items %}
         {% if brands or options %}
-        {% if page_obj %}
         <div class="filter">
             <div class="filter-apply">Apply</div>
             <h2 class="filter__title">Filter<span>Clear</span></h2>
@@ -69,21 +69,13 @@
                     <input type="text" valide-value="{{ min_value }}" name="min" placeholder="from ({{ min_value }})">
                     <input type="text" valide-value="{{ max_value }}" name="max" placeholder="to ({{ max_value }})">
                 </div>
-                <!--
-                    <div class="range-slider flat" data-ticks-position='top' style='--min:-500; --max:500; --value-a:-500; --value-b:500; --suffix:""; --text-value-a:"-500"; --text-value-b:"500";'>
-                        <input type="range" min="-500" max="500" value="-500" oninput="this.parentNode.style.setProperty('--value-a',this.value); this.parentNode.style.setProperty('--text-value-a', JSON.stringify(this.value))">
-                        <output></output>
-                        <input type="range" min="-500" max="500" value="500" oninput="this.parentNode.style.setProperty('--value-b',this.value); this.parentNode.style.setProperty('--text-value-b', JSON.stringify(this.value))">
-                        <output></output>
-                        <div class='range-slider__progress'></div>
-                    </div>   -->
             </div>
             {% endif %}
             {% endfor %}
         </div>
         {% endif %}
         {% endif %}
-        {% if page_obj.count > 0 %}
+        {% if page_obj %}
         <div class="catalog__items">
             {% for item in page_obj.object_list %}
             <a href="{{ item.get_absolute_url }}" class="catalog__item" product-id="{{ item.pk }}">

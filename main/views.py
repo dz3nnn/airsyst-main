@@ -161,10 +161,13 @@ def product_catalog_view(request, category_slug):
 
     items = apply_filter_for_equip(request, items)
 
-    paginator = Paginator(items, 15)
+    paginator = Paginator(items, 1)
+    page_number = request.GET.get("page")
+    page_obj = paginator.get_page(page_number)
+    
     context = {
         "category": category,
-        "page_obj": paginator,
+        "page_obj": page_obj,
         "items": items,
         "brands": Brand.objects.all(),
         "options": options,
