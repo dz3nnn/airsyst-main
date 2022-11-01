@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     # Other
     "mptt",
     "tinymce",
+    "storages",
     # My apps
     "main",
 ]
@@ -138,11 +139,31 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-STATIC_URL = "static/"
-STATIC_ROOT = BASE_DIR / "static_production"
+USE_SPACES = os.getenv("USE_SPACES") == "TRUE"
 
-MEDIA_URL = "media/"
-MEDIA_ROOT = BASE_DIR / "media"
+if USE_SPACES:
+    # settings
+    AWS_ACCESS_KEY_ID = os.getenv("AWS_ACCESS_KEY_ID")
+    AWS_SECRET_ACCESS_KEY = os.getenv("AWS_SECRET_ACCESS_KEY")
+    AWS_STORAGE_BUCKET_NAME = os.getenv("AWS_STORAGE_BUCKET_NAME")
+    AWS_DEFAULT_ACL = "public-read"
+    AWS_S3_ENDPOINT_URL = os.getenv("AWS_S3_ENDPOINT_URL")
+    AWS_S3_OBJECT_PARAMETERS = {"CacheControl": "max-age=86400"}
+    # static settings
+    AWS_LOCATION = "main-static"
+    STATIC_URL = f"https://{AWS_S3_ENDPOINT_URL}/{AWS_LOCATION}/"
+    STATICFILES_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
+    # public media settings
+    PUBLIC_MEDIA_LOCATION = "main-media"
+    MEDIA_URL = f"https://{AWS_S3_ENDPOINT_URL}/{PUBLIC_MEDIA_LOCATION}/"
+    DEFAULT_FILE_STORAGE = "main.storage_backends.PublicMediaStorage"
+else:
+    STATIC_URL = "static/"
+    STATIC_ROOT = BASE_DIR / "static_production"
+
+    MEDIA_URL = "media/"
+    MEDIA_ROOT = BASE_DIR / "media"
+
 
 STATICFILES_DIRS = [BASE_DIR / "static"]
 
