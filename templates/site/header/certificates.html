@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+{% block title %}AirSyst - {% translate 'Certificates' %}{% endblock %}
+{% block content %}
+<div class="bread-crumbs wrap">
+    <a href="/" class="bread-crumbs__item">{% translate 'Home' %}</a>
+    <div class="bread-crumbs__item">{% translate 'Certificates' %}</div>
+</div>
+<section class="certificates wrap">
+    <h1 class="title">{% translate 'Certificates' %}</h1>
+    <h3 class="certificates__descr">
+        {% translate 'Our company has the advantages as being official dealer of the premium brands. This fact guarantees the availability of highest quality field and site technical support , warranty and post-warranty services. Direct contracts with manufacturing plants confirm the quality, legality and minimum cost of the product.' %}
+    </h3>
+    {% if certificates %}
+    <div class="certificates__slider swiper">
+        <div class="swiper-wrapper">
+            {% for certificate in certificates %}
+            {% if certificate.image %}
+            <div class="swiper-slide certificates__slide">
+                <img class="lazyload" data-src="{{ certificate.image.url }}"
+                    alt="{% translate 'certificate' %} {{ certificate.description }}">
+            </div>
+            {% endif %}
+            {% endfor %}
+        </div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+    </div>
+    {% endif %}
+</section>
+{% endblock %}

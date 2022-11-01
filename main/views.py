@@ -19,7 +19,7 @@ from main.models import (
 )
 from main.helps import apply_filter_for_equip
 from main.utils import get_template_for_lang, message_to_managers
-from main.filters import get_equipment_brands
+from main.filters import get_equipment_brands, get_certificates_for_current_lang
 
 # Errors
 def page_404(request, exception=None):
@@ -104,6 +104,12 @@ def dealers_view(request):
 
 def contacts_page(request):
     return render(request, "site/header/contacts.html")
+
+
+def certificates_view(request):
+    certificates = get_certificates_for_current_lang()
+    context = {"certificates": certificates}
+    return render(request, "site/header/certificates.html", context)
 
 
 def service_page(request):

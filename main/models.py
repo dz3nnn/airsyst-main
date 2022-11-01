@@ -483,3 +483,11 @@ class Slider(models.Model):
     title = models.CharField(max_length=250, verbose_name="Заголовок")
     description = models.CharField(max_length=250, verbose_name="Текст")
     image = models.ImageField(upload_to="slider-index", default="no_image.jpg")
+
+    class Meta:
+        verbose_name = "Слайдер"
+        verbose_name_plural = "Слайдеры"
+
+    def __str__(self):
+        return "Слайдер %s" % (self.title)
+

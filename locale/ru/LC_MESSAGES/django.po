@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-01 15:38+0000\n"
+"POT-Creation-Date: 2022-11-01 18:41+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -65,6 +65,7 @@ msgid "Service department"
 msgstr ""
 
 #: templates/base.html:104 templates/base.html:126
+#: templates/profile/profile-page.html:5
 msgid "Profile"
 msgstr ""
 
@@ -81,11 +82,14 @@ msgid "Projects"
 msgstr ""
 
 #: templates/base.html:117 templates/base.html:142 templates/base.html:215
+#: templates/site/header/certificates.html:4
+#: templates/site/header/certificates.html:8
+#: templates/site/header/certificates.html:11
 msgid "Certificates"
 msgstr ""
 
 #: templates/base.html:118 templates/base.html:143 templates/base.html:216
-#: templates/site/header/contacts.html:4 templates/site/header/contacts.html:7
+#: templates/site/header/contacts.html:5 templates/site/header/contacts.html:11
 msgid "Contacts"
 msgstr ""
 
@@ -98,15 +102,18 @@ msgid "Enter your contact details"
 msgstr ""
 
 #: templates/base.html:307 templates/profile/history-page.html:40
-#: templates/site/cart.html:27 templates/site/sections/feedback.html:7
+#: templates/profile/profile-page.html:16 templates/site/cart.html:27
+#: templates/site/sections/feedback.html:7
 msgid "Name"
 msgstr ""
 
-#: templates/base.html:308 templates/site/sections/feedback.html:8
+#: templates/base.html:308 templates/profile/profile-page.html:17
+#: templates/site/sections/feedback.html:8
 msgid "Phone"
 msgstr ""
 
 #: templates/base.html:309 templates/profile/auth.html:12
+#: templates/profile/profile-page.html:18
 #: templates/site/sections/feedback.html:9
 msgid "Email"
 msgstr ""
@@ -151,6 +158,7 @@ msgid "Sign in"
 msgstr ""
 
 #: templates/profile/history-page.html:5 templates/profile/history-page.html:13
+#: templates/profile/profile-page.html:55
 msgid "Purchase history"
 msgstr ""
 
@@ -208,6 +216,59 @@ msgstr ""
 msgid "Repeat order"
 msgstr ""
 
+#: templates/profile/profile-page.html:9
+msgid "Your discount"
+msgstr ""
+
+#: templates/profile/profile-page.html:12
+msgid "Enter contact details"
+msgstr ""
+
+#: templates/profile/profile-page.html:24
+msgid "I am a representative of a legal entity or individual entrepreneur"
+msgstr ""
+
+#: templates/profile/profile-page.html:29
+msgid ""
+"This organization is not yet in our database. Please enter information on it."
+msgstr ""
+
+#: templates/profile/profile-page.html:33
+msgid "Name of the organization"
+msgstr ""
+
+#: templates/profile/profile-page.html:35
+msgid "Legal address"
+msgstr ""
+
+#: templates/profile/profile-page.html:40
+msgid "Matches the physical"
+msgstr ""
+
+#: templates/profile/profile-page.html:43
+msgid "Physical adress"
+msgstr ""
+
+#: templates/profile/profile-page.html:46
+msgid "UNP"
+msgstr ""
+
+#: templates/profile/profile-page.html:47
+msgid "Checking account"
+msgstr ""
+
+#: templates/profile/profile-page.html:48
+msgid "Bank SWIFT"
+msgstr ""
+
+#: templates/profile/profile-page.html:51
+msgid "Name of the bank"
+msgstr ""
+
+#: templates/profile/profile-page.html:54
+msgid "Save"
+msgstr ""
+
 #: templates/site/cart.html:91
 msgid "Checkout"
 msgstr ""
@@ -217,6 +278,7 @@ msgid "Cart is empty"
 msgstr ""
 
 #: templates/site/catalog/product_category.html:8
+#: templates/site/header/certificates.html:7
 #: templates/site/header/projects.html:8 templates/site/parts.html:7
 #: templates/site/project-single.html:8
 msgid "Home"
@@ -239,7 +301,20 @@ msgstr ""
 msgid "Server error!"
 msgstr ""
 
-#: templates/site/header/contacts.html:70
+#: templates/site/header/certificates.html:13
+msgid ""
+"Our company has the advantages as being official dealer of the premium "
+"brands. This fact guarantees the availability of highest quality field and "
+"site technical support , warranty and post-warranty services. Direct "
+"contracts with manufacturing plants confirm the quality, legality and "
+"minimum cost of the product."
+msgstr ""
+
+#: templates/site/header/certificates.html:22 templates/site/index.html:129
+msgid "certificate"
+msgstr ""
+
+#: templates/site/header/contacts.html:74
 msgid "Download “Requisites.pdf”"
 msgstr ""
 
@@ -283,8 +358,8 @@ msgstr ""
 msgid "Spare parts"
 msgstr ""
 
-#: templates/site/index.html:164
-msgid "certificate"
+#: templates/site/index.html:79
+msgid "Learn more"
 msgstr ""
 
 #: templates/site/parts.html:11

@@ -13,12 +13,12 @@
             <div class="bid__company">
                 <div class="bid__company__items">
                     {% for brand in equip_brands %}
-                        <img class="lazyload" data-src="{{ brand.get_logo }}" alt="">
+                    <img class="lazyload" data-src="{{ brand.get_logo }}" alt="">
                     {% endfor %}
                 </div>
                 <div class="bid__company__items">
                     {% for brand in equip_brands %}
-                        <img class="lazyload" data-src="{{ brand.get_logo }}" alt="">
+                    <img class="lazyload" data-src="{{ brand.get_logo }}" alt="">
                     {% endfor %}
                 </div>
             </div>
@@ -32,12 +32,12 @@
             <div class="bid__company">
                 <div class="bid__company__items">
                     {% for brand in all_brands %}
-                        <img class="lazyload" data-src="{{ brand.get_logo }}" alt="">
+                    <img class="lazyload" data-src="{{ brand.get_logo }}" alt="">
                     {% endfor %}
                 </div>
                 <div class="bid__company__items">
                     {% for brand in all_brands %}
-                        <img class="lazyload" data-src="{{ brand.get_logo }}" alt="">
+                    <img class="lazyload" data-src="{{ brand.get_logo }}" alt="">
                     {% endfor %}
                 </div>
             </div>
@@ -51,77 +51,41 @@
             <div class="bid__company">
                 <div class="bid__company__items">
                     {% for brand in equip_brands %}
-                        <img class="lazyload" data-src="{{ brand.get_logo }}" alt="">
+                    <img class="lazyload" data-src="{{ brand.get_logo }}" alt="">
                     {% endfor %}
                 </div>
                 <div class="bid__company__items">
                     {% for brand in equip_brands %}
-                        <img class="lazyload" data-src="{{ brand.get_logo }}" alt="">
+                    <img class="lazyload" data-src="{{ brand.get_logo }}" alt="">
                     {% endfor %}
                 </div>
             </div>
         </a>
     </div>
 </section>
-    <section class="hero wrap">
-        <div class="hero-slider swiper">
-            <div class="swiper-wrapper">
-                <div class="hero-slide swiper-slide">
-                    <h2 class="title">
-                        Nitrogen generators
-                    </h2>
-                    <h3 class="text">
-                        Группа компаний, под общим брендом AIRSYST была создана техническими специалистами,
-                        занимающимися продажами и капитальными ремонтами винтовых и центробежных компрессоров
-                    </h3>
-                    <a href="/" class="btn">
-                        Узнать больше
-                    </a>
-                    <img src="{% static 'img/images/bid-2.png' %}" alt="">
-                </div>
-                <div class="hero-slide swiper-slide">
-                    <h2 class="title">
-                        Генераторы азота
-                    </h2>
-                    <h3 class="text">
-                        Группа компаний, под общим брендом AIRSYST была создана техническими специалистами,
-                        занимающимися продажами и капитальными ремонтами винтовых и центробежных компрессоров
-                    </h3>
-                    <a href="/" class="btn">
-                        Узнать больше
-                    </a>
-                    <img src="{% static 'img/images/bid-2.png' %}" alt="">
-                </div>
-                <div class="hero-slide swiper-slide">
-                    <h2 class="title">
-                        Генераторы азота
-                    </h2>
-                    <h3 class="text">
-                        Группа компаний, под общим брендом AIRSYST была создана техническими специалистами,
-                        занимающимися продажами и капитальными ремонтами винтовых и центробежных компрессоров
-                    </h3>
-                    <a href="/" class="btn">
-                        Узнать больше
-                    </a>
-                    <img src="{% static 'img/images/bid-2.png' %}" alt="">
-                </div>
-                <div class="hero-slide swiper-slide">
-                    <h2 class="title">
-                        Генераторы азота
-                    </h2>
-                    <h3 class="text">
-                        Группа компаний, под общим брендом AIRSYST была создана техническими специалистами,
-                        занимающимися продажами и капитальными ремонтами винтовых и центробежных компрессоров
-                    </h3>
-                    <a href="/" class="btn">
-                        Узнать больше
-                    </a>
-                    <img src="{% static 'img/images/bid-2.png' %}" alt="">
-                </div>
+{% if sliders %}
+<section class="hero wrap">
+    <div class="hero-slider swiper">
+        <div class="swiper-wrapper">
+            {% for slider in sliders %}
+            <div class="hero-slide swiper-slide">
+                <h2 class="title">
+                    {{ slider.title }}
+                </h2>
+                <h3 class="text">
+                    {{ slider.description }}
+                </h3>
+                <a href="/" class="btn">
+                    {% translate 'Learn more' %}
+                </a>
+                <img src="{{ slider.image.url }}" alt="">
             </div>
-            <div class="swiper-pagination"></div>
+            {% endfor %}
         </div>
-    </section>
+        <div class="swiper-pagination"></div>
+    </div>
+</section>
+{% endif %}
 <!--
  <section class="reviews wrap">
     <h2 class="title">Отзывы о нас</h2>
@@ -161,7 +125,8 @@
             {% for certificate in certificates %}
             {% if certificate.image %}
             <div class="swiper-slide certificates__slide">
-                <img class="lazyload" data-src="{{ certificate.image.url }}" alt="{% translate 'certificate' %} {{ certificate.description }}">
+                <img class="lazyload" data-src="{{ certificate.image.url }}"
+                    alt="{% translate 'certificate' %} {{ certificate.description }}">
                 {% comment %} <div class="certificates__name">{{ certificate.description }}</div> {% endcomment %}
             </div>
             {% endif %}

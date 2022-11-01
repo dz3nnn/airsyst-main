@@ -1,8 +1,12 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load i18n %}
+{% load main_extras %}
 {% block title %}AirSyst - {% translate 'Contacts' %}{% endblock %}
 {% block content %}
+
+{% define '5d04084dd70942dfb6acb1315548cb9d' as map_url %}
+
 <div class="contacts-page wrap">
     <h1 class="title">{% translate 'Contacts' %}</h1>
     <div class="contacts-page__items">
@@ -70,6 +74,6 @@
     <a href="/" download="download" class="btn">{% translate 'Download “Requisites.pdf”' %}</a>
 </div>
 <iframe
-    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1176.3125484074558!2d27.508143809134385!3d53.86731419736347!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46dbd06c7754dd9d%3A0x2a0cd6be8d65e001!2z0L_QtdGALiDQodC-0YTRjNC4INCa0L7QstCw0LvQtdCy0YHQutC-0LkgNjAsINCc0LjQvdGB0LogMjIwMDg5!5e0!3m2!1sru!2sby!4v1646213875419!5m2!1sru!2sby"
+    src="{{ map_url|get_info_by_uid|safe }}"
     style="border:0;" allowfullscreen="" loading="lazy"></iframe>
 {% endblock %}

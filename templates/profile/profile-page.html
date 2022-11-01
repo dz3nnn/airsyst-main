@@ -1,57 +1,58 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load main_extras %}
-{% block title %}AirSyst - Profile{% endblock %}
+{% load i18n %}
+{% block title %}AirSyst - {% translate 'Profile' %}{% endblock %}
 {% block content %}
 <section class="order lk wrap">
     <div class="your-discont">
-        Your discount 5%
+        {% translate 'Your discount' %} 5%
     </div>
     <h2 class="sub-title">
-        Enter contact details
+        {% translate 'Enter contact details' %}
     </h2>
     <div class="order__form">
         <div class="order__inputs">
-            <input type="text" name="" placeholder="Name">
-            <input type="phone" name="" placeholder="Phone">
-            <input type="mail" name="" placeholder="Email">
+            <input type="text" name="" placeholder="{% translate 'Name' %}">
+            <input type="phone" name="" placeholder="{% translate 'Phone' %}">
+            <input type="mail" name="" placeholder="{% translate 'Email' %}">
         </div>
         <div class="filter__checkbox need-rec">
             <div class="filter__check">
                 <img src="{% static 'img/icons/check.svg' %}">
             </div>
-            <span>I am a representative of a legal entity or individual entrepreneur</span>
+            <span>{% translate 'I am a representative of a legal entity or individual entrepreneur' %}</span>
         </div>
         <div class="order__rec">
             <div class="order__rec-null">
                 <img src="{% static 'img/icons/rec.svg' %}">
-                This organization is not yet in our database. Please enter information on it.
+                {% translate 'This organization is not yet in our database. Please enter information on it.' %}
             </div>
 
             <div class="order__inputs">
-                <input type="text" name="" placeholder="Name of the organization*">
+                <input type="text" name="" placeholder="{% translate 'Name of the organization' %}*">
                 <div class="order__input">
-                    <input type="text" name="" placeholder="Legal address*">
+                    <input type="text" name="" placeholder="{% translate 'Legal address' %}*">
                     <div class="filter__checkbox">
                         <div class="filter__check">
                             <img src="{% static 'img/icons/check.svg' %}">
                         </div>
-                        <span>Matches the physical</span>
+                        <span>{% translate 'Matches the physical' %}</span>
                     </div>
                 </div>
-                <input type="text" name="" placeholder="Physical adress">
+                <input type="text" name="" placeholder="{% translate 'Physical adress' %}">
             </div>
             <div class="order__inputs">
-                <input type="text" name="" placeholder="UNP*">
-                <input type="text" name="" placeholder="Checking account*">
-                <input type="text" name="" placeholder="Bank SWIFT*">
+                <input type="text" name="" placeholder="{% translate 'UNP' %}*">
+                <input type="text" name="" placeholder="{% translate 'Checking account' %}*">
+                <input type="text" name="" placeholder="{% translate 'Bank SWIFT' %}*">
             </div>
             <div class="order__inputs">
-                <input type="text" name="" placeholder="Name of the bank*">
+                <input type="text" name="" placeholder="{% translate 'Name of the bank' %}*">
             </div>
         </div>
-        <div class="btn">Save</div>
-        <a href="{% url 'history-page' %}" class="btn">Purchase history</a>
+        <div class="btn">{% translate 'Save' %}</div>
+        <a href="{% url 'history-page' %}" class="btn">{% translate 'Purchase history' %}</a>
     </div>
 </section>
 

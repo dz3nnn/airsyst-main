@@ -14,6 +14,7 @@ from .models import (
     Equipment_Image,
     Equipment_Item,
     Certificate,
+    Slider,
 )
 
 
@@ -31,6 +32,8 @@ class CategoryAdmin(MPTTModelAdmin):
     Option,
     OptionRelation,
     OptionValue,
+    Slider,
+    Certificate,
 )
 class DefaultAdmin(admin.ModelAdmin):
     pass
