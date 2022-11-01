@@ -7,8 +7,6 @@ db.sqlite3
 pipe
 dumps
 
-
-static
 static_production
 media
 
