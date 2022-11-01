@@ -17,7 +17,7 @@
 <section class="catalog wrap">
     <h1 class="title">{{ category.name }}</h1>
     <div class="catalog__content">
-        {% if items %}
+        {% if True %}
         {% if brands or options %}
         <div class="filter">
             <div class="filter-apply">Apply</div>
@@ -42,9 +42,10 @@
             {% for option in options %}
             {% comment %} Check if option is numerical {% endcomment %}
             {% if not option.numerical %}
+            {% get_option_values items option.pk as option_values %}
             <div class="filter__checkboxs" option-id="{{ option.pk }}" name="{{ option.name }}">
                 <h3 class="filter__sub-title">{{ option.name }}</h3>
-                {% get_option_values items option.pk as option_values %}
+                
                 {% for option_value_model in option_values %}
                 <div class="filter__checkbox" option-value-id="{{ option_value_model.pk }}"
                     name="{{ option_value_model.name }}">

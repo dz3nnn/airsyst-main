@@ -1,87 +1,11 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block title %}AirSyst - Contacts{% endblock %}
+{% load i18n %}
+{% block title %}AirSyst - {% translate 'Contacts' %}{% endblock %}
 {% block content %}
 <div class="contacts-page wrap">
-    <h1 class="title">Контакты</h1>
+    <h1 class="title">{% translate 'Contacts' %}</h1>
     <div class="contacts-page__items">
-        <!--  <div class="contacts-page__item">
-                <div class="contacts-page__icons">
-                    <img src="img/icons/tel.svg" alt="">
-                </div>
-                <div class="contacts-page__data">
-                    <div class="contacts-page__data__item">
-                        <h3>
-                            Отдел продаж:
-                        </h3>
-                        <a href="tel:" target="_blank" class="tel">
-                            +375 (29) 345 67 89
-                        </a>
-                        <a href="tel:" target="_blank" class="tel">
-                            +375 (29) 345 67 89
-                        </a>
-                    </div>
-                    <div class="contacts-page__data__item">
-                        <h3>
-                            Сервисный центр:
-                        </h3>
-                        <a href="tel:" target="_blank" class="tel">
-                            +375 (29) 345 67 89
-                        </a>
-                        <a href="tel:" target="_blank" class="tel">
-                            +375 (29) 345 67 89
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="contacts-page__item">
-                <div class="contacts-page__icons">
-                    <img src="img/icons/mail.svg">
-                    <img src="img/icons/vk.svg">
-                    <img src="img/icons/time.svg">
-                </div>
-                <div class="contacts-page__data">
-                    <div class="contacts-page__data__item">
-                        <a class="link" href="mailto:info@airsist.ru">
-                            info@airsist.ru
-                        </a>
-                    </div>
-                    <div class="contacts-page__data__item">
-                        <a class="link" href="vk.com/">
-                            vk.com/id1
-                        </a>
-                    </div>
-                    <div class="contacts-page__data__item">
-                        <div class="time-work__items">
-                            <div class="time-work__item">
-                                <span>Пн-Вт:</span> 9:00-18:00
-                            </div>
-                            <div class="time-work__item">
-                                <span>Сб-Вс:</span> Выходной
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="contacts-page__item">
-                <div class="contacts-page__icons">
-                    <img src="img/icons/location.svg" alt="">
-                </div>
-                <div class="contacts-page__data">
-                    <div class="contacts-page__data__item">
-                        <h3>Офис:</h3>
-                        <h4>г. Минск, ул. Тростенецкая, 6к2</h4>
-                    </div>
-                    <div class="contacts-page__data__item">
-                        <h3>Сервис:</h3>
-                        <h4>г. Минск, ул. Тростенецкая, 6к2</h4>
-                    </div>
-                    <div class="contacts-page__data__item">
-                        <h3>Склад:</h3>
-                        <h4>г. Минск, ул. Тростенецкая, 6к2</h4>
-                    </div>
-                </div>
-            </div> -->
         <div class="contacts-page__item">
             <div class="contacts-page__country">
                 Турецкая Республика:
@@ -143,7 +67,7 @@
             </div>
         </div>
     </div>
-    <a href="/" download="download" class="btn">Скачать “Реквизиты.pdf”</a>
+    <a href="/" download="download" class="btn">{% translate 'Download “Requisites.pdf”' %}</a>
 </div>
 <iframe
     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1176.3125484074558!2d27.508143809134385!3d53.86731419736347!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46dbd06c7754dd9d%3A0x2a0cd6be8d65e001!2z0L_QtdGALiDQodC-0YTRjNC4INCa0L7QstCw0LvQtdCy0YHQutC-0LkgNjAsINCc0LjQvdGB0LogMjIwMDg5!5e0!3m2!1sru!2sby!4v1646213875419!5m2!1sru!2sby"

@@ -15,14 +15,23 @@ def get_options_by_relations(option_relations):
     options_list = Option.objects.filter(pk__in=relation_ids).order_by("name")
     return options_list
 
+def get_brands_from_params(request):
+    """ Brands from GET """
+    brands_request = request.GET.get('brands')
+    if brands_request:
+        brands_request = re.sub('[^0-9:]', '', brands_request)
+        brand_items_from_request = brands_request.split(':')
+        return brand_items_from_request
+    return None
+
 
 def apply_filter_for_equip(request, equips):
     """Apply filters to Equipment QuerySet"""
-    # brand_ids_from_req = get_brands_from_params_v2(request)
+    brand_ids_from_req = get_brands_from_params(request)
 
     # # Apply brands
-    # if brand_ids_from_req:
-    #     equips = equips.filter(brand__in=brand_ids_from_req)
+    if brand_ids_from_req:
+        equips = equips.filter(brand__in=brand_ids_from_req)
 
     # Apply filters
     option_ids = get_numeric_parameters_from_request(request)

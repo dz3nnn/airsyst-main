@@ -1,9 +1,10 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load i18n %}
 {% block title %}AirSyst - Cart{% endblock %}
 {% block content %}
 <section class="shop-cart wrap">
-    <h1 class="title">Корзина</h1>
+    <h1 class="title">Cart</h1>
     {% if basket_items %}
     <div class="shop-cart__content">
         <div class="shop-cart__head">
@@ -11,11 +12,11 @@
                 <div class="filter__check">
                     <img class="lazyload" data-src="{% static 'img/icons/check.svg' %}">
                 </div>
-                <span>Выбрать все</span>
+                <span>{% translate 'Choose all' %}</span>
             </div>
             <div class="shop-cart__delete-all">
                 <img class="lazyload" data-src="{% static 'img/icons/delete.svg' %}">
-                Удалить выбранное
+                {% translate 'Delete selected' %}
             </div>
         </div>
         <div class="shop-cart__body">
@@ -23,10 +24,10 @@
                 <div class="shop-cart__header">
                     <div class="shop-cart__col"></div>
                     <div class="shop-cart__col"></div>
-                    <div class="shop-cart__col">Наименование</div>
-                    <div class="shop-cart__col">Цена</div>
-                    <div class="shop-cart__col">К-во</div>
-                    <div class="shop-cart__col">Стоимость</div>
+                    <div class="shop-cart__col">{% translate 'Name' %}</div>
+                    <div class="shop-cart__col">{% translate 'Price' %}</div>
+                    <div class="shop-cart__col">{% translate 'Quantity' %}</div>
+                    <div class="shop-cart__col">{% translate 'Total' %}</div>
                     <div class="shop-cart__col"></div>
                 </div>
                 <div class="shop-cart__items">
@@ -43,7 +44,7 @@
                             <img class="lazyload" data-src="{{ basket_item.equip_obj.pk }}" alt="">
                         </a>
                         <div class="shop-cart__col shop-cart__name">{{ basket_item.equip_obj.name }}</div>
-                        <div class="shop-cart__col shop-cart__price">{{ basket_item.equip_obj.calc_price }} BYN</div>
+                        <div class="shop-cart__col shop-cart__price">{{ basket_item.equip_obj.get_final_price }}</div>
                         <div class="shop-cart__col shop-cart__count">
                             <div class="catalog__count">
                                 <div class="catalog__minus">-</div>
@@ -51,7 +52,7 @@
                                 <div class="catalog__plus">+</div>
                             </div>
                         </div>
-                        <div class="shop-cart__col shop-cart__full-price">{{ basket_item.full_price }} BYN</div>
+                        <div class="shop-cart__col shop-cart__full-price">{{ basket_item.full_price }}</div>
                         <div class="shop-cart__col shop-cart__delete">
                             <img class="lazyload" data-src="{% static 'img/icons/delete.svg' %}" alt="">
                         </div>
@@ -61,39 +62,39 @@
             </div>
             <div class="shop-cart__form">
                 <div class="shop-cart__sub-title">
-                    Ваш заказ
+                    {% translate 'Your order' %}
                 </div>
                 <div class="shop-cart__form__item shop-cart__form__count">
                     <div class="shop-cart__form__text">
-                        Выбрано товаров:
+                        {% translate 'Items selected' %}:
                     </div>
                     <div class="shop-cart__form__value">
-                        {{ basket_items }} шт.
+                        {{ basket_items }} {% translate 'pcs' %}.
                     </div>
                 </div>
                 <div class="shop-cart__form__item shop-cart__form__wt">
                     <div class="shop-cart__form__text">
-                        Вес заказа:
+                        {% translate 'Order weight' %}:
                     </div>
                     <div class="shop-cart__form__value">
-                        {{ basket_items }} кг.
+                        {{ basket_items }} {% translate 'kg' %}.
                     </div>
                 </div>
                 <div class="shop-cart__form__item shop-cart__form__total">
                     <div class="shop-cart__form__text">
-                        Итого:
+                        {% translate 'Total' %}:
                     </div>
                     <div class="shop-cart__form__value">
-                        {{ basket_items }} BYN
+                        {{ basket_items }}
                     </div>
                 </div>
-                <a href="#" class="btn">Оформить заказ</a>
+                <a href="#" class="btn">{% translate 'Checkout' %}</a>
             </div>
         </div>
     </div>
     {% else %}
     <div class="shop-cart__empty">
-        Корзина пуста
+        {% translate 'Cart is empty' %}
     </div>
     {% endif %}
 </section>

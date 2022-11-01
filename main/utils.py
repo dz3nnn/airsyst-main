@@ -68,6 +68,29 @@ def get_model_attr_by_lang(_obj, _field):
         return ""
 
 
+def get_model_attr_by_region(_obj, _field, remove_root=False):
+    try:
+        if settings.CURRENT_SITE_REGION:
+            if not remove_root:
+                return getattr(_obj, f"{_field}_{settings.CURRENT_SITE_REGION}")
+            else:
+                return remove_root_tag_func(
+                    getattr(_obj, f"{_field}_{settings.CURRENT_SITE_REGION}")
+                )
+    except AttributeError:
+        return ""
+
+
+def remove_root_tag_func(info_text: str) -> str:
+    # <p>Some text</p>
+    if info_text:
+        first_tag = info_text.find(">")
+        last_tag = info_text.rfind("<")
+        if first_tag > 0 and last_tag > 0:
+            return info_text[first_tag + 1 : last_tag]
+    return info_text
+
+
 def get_template_for_lang(template_name):
     if settings.CURRENT_SITE_LANG == "ru":
         return f"{template_name}_ru.html"

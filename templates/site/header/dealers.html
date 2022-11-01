@@ -1,0 +1,112 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}AirSyst - For dealers{% endblock %}
+{% block content %}
+
+    <div class="bread-crumbs wrap">
+        <a href="/" class="bread-crumbs__item">Главная</a>
+        <div class="bread-crumbs__item">Дилерам</div>
+    </div>
+    <section class="dealers wrap">
+        <h1 class="title">Дилерам</h1>
+        <div class="dealers__content">
+            <p>
+                Производитель оборудования AIRSYST открыт для сотрудничеста. Наша компания готова предложить лучшие
+                условия
+                по работе с дилерами:
+            </p>
+            <ul>
+                <li>
+                    Наличие генераторов азота и кислорода на складе или производство отсутствующих моделей за 10 дней
+
+                </li>
+                <li>
+                    Наличие компрессоров, воздуходувок, осушителей и ресиверов на складе. В случае отсутствия
+                    запрошенной
+                    модели, гарантируем изготовление в течение 15 календарных дней
+                </li>
+                <li>
+                    Гибкую систему скидок
+                </li>
+                <li>
+                    Техническую поддержку по Вашим проектам
+                </li>
+                <li>
+                    Резервирование проекта за дилером, что позволит безопасность проекта и сконцентрироваться на работе
+                    с
+                    клиентом
+
+                </li>
+                <li>
+                    Наличие сертификатов на весь модельный ряд
+
+                </li>
+                <li>
+                    Гарантийную и послегарантийную сервисную поддержку, а также поставку запасных частей
+
+                </li>
+                <li>
+                    Обучение Ваших сотрудников
+
+                </li>
+                <li>
+                    Выезд наших сервисных инженеров для запуска оборудования
+
+                </li>
+                <li>
+                    Выплата годовых бонусов при выполнении планов продаж
+
+                </li>
+                <li>
+
+                    Эксклюзивные права на территорию (оговаривается персонально)
+                </li>
+            </ul>
+            <p>
+                Мы нацелены на долгосрочное и взаимовыгодное сотрудничество. Станьте частью большой семьи AIRSYST.
+            </p>
+            <p>
+                Вместе мы сможем сделать мир лучше!
+            </p>
+        </div>
+        <div class="dealers__feedback">
+            <form class="form" action="">
+                <div class="form__title">
+                    Оставьте заявку
+                </div>
+                <div class="form__inputs">
+                    <input class="small" name="country" placeholder="Страна*">
+                    <input class="small" name="company" placeholder="Название компании*">
+                    <input class="small" name="phone" placeholder="Телефон для связи*">
+                    <input class="small" name="mail" placeholder="E-mail*">
+                    <input class="small" name="site" placeholder="Сайт">
+                    <input class="small" name="person" placeholder="Должностное лицо*">
+                </div>
+                <span>Желаемое оборудование:</span>
+                <div class="form__radios">
+                    <label for="gen">
+                        <input type="radio" name="desired-equipment" id="gen" value="gen">
+                        <span>Генераторы газов</span>
+                    </label>
+                    <label for="compressor">
+                        <input type="radio" name="desired-equipment" id="compressor" value="compressor">
+                        <span>Компрессоры и воздуходувки</span>
+                    </label>
+                    <label for="diesel">
+                        <input type="radio" name="desired-equipment" id="diesel" value="diesel">
+                        <span>Дизельгенераторы</span>
+                    </label>
+                </div>
+                <textarea name="info" placeholder="Информация о компании*"></textarea>
+                <div class="filter__checkbox">
+                    <div class="filter__check">
+                        <img src="img/icons/check.svg">
+                    </div>
+                    <span>Я принимаю условия политики конфиденциальности</span>
+                </div>
+                <input type="submit" class="btn" value="Отправить">
+            </form>
+        </div>
+    </section>
+
+{% endblock %}

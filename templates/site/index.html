@@ -63,6 +63,65 @@
         </a>
     </div>
 </section>
+    <section class="hero wrap">
+        <div class="hero-slider swiper">
+            <div class="swiper-wrapper">
+                <div class="hero-slide swiper-slide">
+                    <h2 class="title">
+                        Nitrogen generators
+                    </h2>
+                    <h3 class="text">
+                        Группа компаний, под общим брендом AIRSYST была создана техническими специалистами,
+                        занимающимися продажами и капитальными ремонтами винтовых и центробежных компрессоров
+                    </h3>
+                    <a href="/" class="btn">
+                        Узнать больше
+                    </a>
+                    <img src="{% static 'img/images/bid-2.png' %}" alt="">
+                </div>
+                <div class="hero-slide swiper-slide">
+                    <h2 class="title">
+                        Генераторы азота
+                    </h2>
+                    <h3 class="text">
+                        Группа компаний, под общим брендом AIRSYST была создана техническими специалистами,
+                        занимающимися продажами и капитальными ремонтами винтовых и центробежных компрессоров
+                    </h3>
+                    <a href="/" class="btn">
+                        Узнать больше
+                    </a>
+                    <img src="{% static 'img/images/bid-2.png' %}" alt="">
+                </div>
+                <div class="hero-slide swiper-slide">
+                    <h2 class="title">
+                        Генераторы азота
+                    </h2>
+                    <h3 class="text">
+                        Группа компаний, под общим брендом AIRSYST была создана техническими специалистами,
+                        занимающимися продажами и капитальными ремонтами винтовых и центробежных компрессоров
+                    </h3>
+                    <a href="/" class="btn">
+                        Узнать больше
+                    </a>
+                    <img src="{% static 'img/images/bid-2.png' %}" alt="">
+                </div>
+                <div class="hero-slide swiper-slide">
+                    <h2 class="title">
+                        Генераторы азота
+                    </h2>
+                    <h3 class="text">
+                        Группа компаний, под общим брендом AIRSYST была создана техническими специалистами,
+                        занимающимися продажами и капитальными ремонтами винтовых и центробежных компрессоров
+                    </h3>
+                    <a href="/" class="btn">
+                        Узнать больше
+                    </a>
+                    <img src="{% static 'img/images/bid-2.png' %}" alt="">
+                </div>
+            </div>
+            <div class="swiper-pagination"></div>
+        </div>
+    </section>
 <!--
  <section class="reviews wrap">
     <h2 class="title">Отзывы о нас</h2>
@@ -102,7 +161,7 @@
             {% for certificate in certificates %}
             {% if certificate.image %}
             <div class="swiper-slide certificates__slide">
-                <img class="lazyload" data-src="{{ certificate.image.url }}" alt="сертификат {{ certificate.description }}">
+                <img class="lazyload" data-src="{{ certificate.image.url }}" alt="{% translate 'certificate' %} {{ certificate.description }}">
                 {% comment %} <div class="certificates__name">{{ certificate.description }}</div> {% endcomment %}
             </div>
             {% endif %}

@@ -5,53 +5,53 @@
 {% block content %}
 <section class="order lk wrap">
     <div class="your-discont">
-        Ваша скидка 5%
+        Your discount 5%
     </div>
     <h2 class="sub-title">
-        Введите контактные данные
+        Enter contact details
     </h2>
     <div class="order__form">
         <div class="order__inputs">
-            <input type="text" name="" placeholder="Имя">
-            <input type="phone" name="" placeholder="Телефон">
+            <input type="text" name="" placeholder="Name">
+            <input type="phone" name="" placeholder="Phone">
             <input type="mail" name="" placeholder="Email">
         </div>
         <div class="filter__checkbox need-rec">
             <div class="filter__check">
                 <img src="{% static 'img/icons/check.svg' %}">
             </div>
-            <span>Я представитель юридического лица или ИП</span>
+            <span>I am a representative of a legal entity or individual entrepreneur</span>
         </div>
         <div class="order__rec">
             <div class="order__rec-null">
                 <img src="{% static 'img/icons/rec.svg' %}">
-                Данной организации еше нет в нашей базе. Пожалуйста, введите по ней информацию.
+                This organization is not yet in our database. Please enter information on it.
             </div>
 
             <div class="order__inputs">
-                <input type="text" name="" placeholder="Название организации*">
+                <input type="text" name="" placeholder="Name of the organization*">
                 <div class="order__input">
-                    <input type="text" name="" placeholder="Юридическтй адрес*">
+                    <input type="text" name="" placeholder="Legal address*">
                     <div class="filter__checkbox">
                         <div class="filter__check">
                             <img src="{% static 'img/icons/check.svg' %}">
                         </div>
-                        <span>Совпадает с физическим</span>
+                        <span>Matches the physical</span>
                     </div>
                 </div>
-                <input type="text" name="" placeholder="Физический адрес">
+                <input type="text" name="" placeholder="Physical adress">
             </div>
             <div class="order__inputs">
-                <input type="text" name="" placeholder="УНП*">
-                <input type="text" name="" placeholder="Расчетный счет*">
-                <input type="text" name="" placeholder="SWIFT банка*">
+                <input type="text" name="" placeholder="UNP*">
+                <input type="text" name="" placeholder="Checking account*">
+                <input type="text" name="" placeholder="Bank SWIFT*">
             </div>
             <div class="order__inputs">
-                <input type="text" name="" placeholder="Наименование банка*">
+                <input type="text" name="" placeholder="Name of the bank*">
             </div>
         </div>
-        <div class="btn">Сохранить</div>
-        <a href="{% url 'history-page' %}" class="btn">История заказов</a>
+        <div class="btn">Save</div>
+        <a href="{% url 'history-page' %}" class="btn">Purchase history</a>
     </div>
 </section>
 

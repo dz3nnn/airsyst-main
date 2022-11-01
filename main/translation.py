@@ -1,6 +1,14 @@
 from dataclasses import field
 from modeltranslation.translator import translator, TranslationOptions
-from .models import Category, Project, Brand, Company, Country, Equipment_Item
+from main.models import (
+    Category,
+    Project,
+    Brand,
+    Company,
+    Country,
+    Equipment_Item,
+    Slider,
+)
 
 
 class EquipmentItemTranslateOptinos(TranslationOptions):
@@ -43,3 +51,10 @@ class CountryTranslationOptions(TranslationOptions):
 
 
 translator.register(Country, CountryTranslationOptions)
+
+
+class SliderTranslationOptions(TranslationOptions):
+    fields = ("title", "description")
+
+
+translator.register(Slider, SliderTranslationOptions)

@@ -1,7 +1,8 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load i18n %}
 {% load main_extras %}
-{% block title %}AirSyst - History{% endblock %}
+{% block title %}AirSyst - {% translate 'Purchase history' %}{% endblock %}
 {% block add_css %}
 <link rel="stylesheet" href="{% static 'css/air-datepicker.css' %}">
 {% endblock %}
@@ -9,11 +10,11 @@
 <section class="history wrap">
     <div class="history__time">
         <h1 class="title">
-            История заказов
+            {% translate 'Purchase history' %}
         </h1>
-        <input type="text" id="data" placeholder="Укажите интервал времени">
+        <input type="text" id="data" placeholder="{% translate 'Specify time interval' %}">
         <div class="btn">
-            Далее
+            {% translate 'Next' %}
         </div>
     </div>
 
@@ -23,11 +24,11 @@
                 <div class="filter__check">
                     <img src="{% static 'img/icons/check.svg' %}">
                 </div>
-                <span>Выбрать все</span>
+                <span>{% translate 'Choose all' %}</span>
             </div>
             <div class="shop-cart__delete-all">
                 <img src="{% static 'img/icons/delete.svg' %}">
-                Удалить выбранное
+                {% translate 'Delete selected' %}
             </div>
         </div>
         <div class="shop-cart__body">
@@ -36,11 +37,11 @@
                     <div class="shop-cart__col"></div>
                     <div class="shop-cart__col"></div>
                     <div class="shop-cart__col">
-                        Наименование
+                        {% translate 'Name' %}
                     </div>
-                    <div class="shop-cart__col">Цена</div>
-                    <div class="shop-cart__col">К-во</div>
-                    <div class="shop-cart__col">Стоимость</div>
+                    <div class="shop-cart__col">{% translate 'Price' %}</div>
+                    <div class="shop-cart__col">{% translate 'Quantity' %}</div>
+                    <div class="shop-cart__col">{% translate 'Total' %}</div>
                     <div class="shop-cart__col"></div>
                 </div>
                 <div class="shop-cart__items">
@@ -56,10 +57,10 @@
                             <img src="{% static 'img/images/catalog-item.jpg' %}" alt="">
                         </a>
                         <div class="shop-cart__col shop-cart__name">
-                            ВОЗДУШНЫЙ ФИЛЬТР ECO AE-704-22
+                            Product name
                         </div>
                         <div class="shop-cart__col shop-cart__price">
-                            150 BYN
+                            100$
                         </div>
                         <div class="shop-cart__col shop-cart__count">
                             <div class="catalog__count">
@@ -69,7 +70,7 @@
                             </div>
                         </div>
                         <div class="shop-cart__col shop-cart__full-price">
-                            150 BYN
+                            100$
                         </div>
                         <div class="shop-cart__col shop-cart__delete">
                             <img src="{% static 'img/icons/delete.svg' %}" alt="">
@@ -87,10 +88,10 @@
                             <img src="{% static 'img/images/catalog-item.jpg' %}" alt="">
                         </a>
                         <div class="shop-cart__col shop-cart__name">
-                            ВОЗДУШНЫЙ ФИЛЬТР ECO AE-704-22
+                            Product name
                         </div>
                         <div class="shop-cart__col shop-cart__price">
-                            150 BYN
+                            100$
                         </div>
                         <div class="shop-cart__col shop-cart__count">
                             <div class="catalog__count">
@@ -100,69 +101,7 @@
                             </div>
                         </div>
                         <div class="shop-cart__col shop-cart__full-price">
-                            150 BYN
-                        </div>
-                        <div class="shop-cart__col shop-cart__delete">
-                            <img src="{% static 'img/icons/delete.svg' %}" alt="">
-                        </div>
-                    </div>
-                    <div class="shop-cart__item">
-                        <div class="shop-cart__col select">
-                            <div class="filter__checkbox">
-                                <div class="filter__check">
-                                    <img src="{% static 'img/icons/check.svg' %}">
-                                </div>
-                            </div>
-                        </div>
-                        <a href="/" class="shop-cart__col shop-cart__img">
-                            <img src="{% static 'img/images/catalog-item.jpg' %}" alt="">
-                        </a>
-                        <div class="shop-cart__col shop-cart__name">
-                            ВОЗДУШНЫЙ ФИЛЬТР ECO AE-704-22
-                        </div>
-                        <div class="shop-cart__col shop-cart__price">
-                            150 BYN
-                        </div>
-                        <div class="shop-cart__col shop-cart__count">
-                            <div class="catalog__count">
-                                <div class="catalog__minus">-</div>
-                                <input id="catalog-count" type="text" value="1">
-                                <div class="catalog__plus">+</div>
-                            </div>
-                        </div>
-                        <div class="shop-cart__col shop-cart__full-price">
-                            150 BYN
-                        </div>
-                        <div class="shop-cart__col shop-cart__delete">
-                            <img src="{% static 'img/icons/delete.svg' %}" alt="">
-                        </div>
-                    </div>
-                    <div class="shop-cart__item">
-                        <div class="shop-cart__col select">
-                            <div class="filter__checkbox">
-                                <div class="filter__check">
-                                    <img src="{% static 'img/icons/check.svg' %}">
-                                </div>
-                            </div>
-                        </div>
-                        <a href="/" class="shop-cart__col shop-cart__img">
-                            <img src="{% static 'img/images/catalog-item.jpg' %}" alt="">
-                        </a>
-                        <div class="shop-cart__col shop-cart__name">
-                            ВОЗДУШНЫЙ ФИЛЬТР ECO AE-704-22
-                        </div>
-                        <div class="shop-cart__col shop-cart__price">
-                            150 BYN
-                        </div>
-                        <div class="shop-cart__col shop-cart__count">
-                            <div class="catalog__count">
-                                <div class="catalog__minus">-</div>
-                                <input id="catalog-count" type="text" value="1">
-                                <div class="catalog__plus">+</div>
-                            </div>
-                        </div>
-                        <div class="shop-cart__col shop-cart__full-price">
-                            150 BYN
+                            100$
                         </div>
                         <div class="shop-cart__col shop-cart__delete">
                             <img src="{% static 'img/icons/delete.svg' %}" alt="">
@@ -172,33 +111,33 @@
             </div>
             <div class="shop-cart__form">
                 <div class="shop-cart__sub-title">
-                    Ваш заказ
+                    {% translate 'Your order' %}
                 </div>
                 <div class="shop-cart__form__item shop-cart__form__count">
                     <div class="shop-cart__form__text">
-                        Выбрано товаров:
+                        {% translate 'Items selected' %}:
                     </div>
                     <div class="shop-cart__form__value">
-                        4 шт.
+                        4 {% translate 'pcs'%}.
                     </div>
                 </div>
                 <div class="shop-cart__form__item shop-cart__form__wt">
                     <div class="shop-cart__form__text">
-                        Вес заказа:
+                        {% translate 'Order weight' %}:
                     </div>
                     <div class="shop-cart__form__value">
-                        0,47 кг.
+                        0,47 {% translate 'kg' %}.
                     </div>
                 </div>
                 <div class="shop-cart__form__item shop-cart__form__total">
                     <div class="shop-cart__form__text">
-                        Итого:
+                        {% translate 'Total' %}:
                     </div>
                     <div class="shop-cart__form__value">
-                        1 675 BYN
+                        200$
                     </div>
                 </div>
-                <a href="/" class="btn">Повторить заказ</a>
+                <a href="/" class="btn">{% translate 'Repeat order' %}</a>
             </div>
         </div>
     </div>

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-29 15:44+0000\n"
+"POT-Creation-Date: 2022-11-01 15:38+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -28,92 +28,202 @@ msgstr ""
 msgid "Russian"
 msgstr ""
 
-#: main/models.py:13
-msgid "Обслуживание"
-msgstr ""
-
 #: main/models.py:14
-msgid "Сервис"
+msgid "Maintenance"
 msgstr ""
 
 #: main/models.py:15
-msgid "Продажи"
+msgid "Repair"
 msgstr ""
 
-#: main/models.py:299
+#: main/models.py:16
+msgid "Sell"
+msgstr ""
+
+#: main/models.py:345
 msgid "On order"
 msgstr ""
 
-#: main/views.py:62
+#: main/views.py:63
 msgid "Invalid login"
 msgstr ""
 
-#: main/views.py:76
+#: main/views.py:77
 msgid "User already registered"
 msgstr ""
 
-#: templates/base.html:38 templates/base.html:185 templates/base.html:217
+#: templates/base.html:38 templates/base.html:187 templates/base.html:220
 msgid "Work time"
 msgstr ""
 
-#: templates/base.html:49 templates/base.html:145 templates/base.html:234
+#: templates/base.html:49 templates/base.html:147 templates/base.html:237
 msgid "Sales department"
 msgstr ""
 
-#: templates/base.html:72 templates/base.html:165 templates/base.html:258
+#: templates/base.html:72 templates/base.html:167 templates/base.html:261
 msgid "Service department"
 msgstr ""
 
-#: templates/base.html:104 templates/base.html:125
+#: templates/base.html:104 templates/base.html:126
 msgid "Profile"
 msgstr ""
 
-#: templates/base.html:114 templates/base.html:138 templates/base.html:210
+#: templates/base.html:114 templates/base.html:139 templates/base.html:212
 msgid "Company"
 msgstr ""
 
-#: templates/base.html:115 templates/base.html:139 templates/base.html:211
+#: templates/base.html:115 templates/base.html:140 templates/base.html:213
+msgid "Dealers"
+msgstr ""
+
+#: templates/base.html:116 templates/base.html:141 templates/base.html:214
 msgid "Projects"
 msgstr ""
 
-#: templates/base.html:116 templates/base.html:140 templates/base.html:212
+#: templates/base.html:117 templates/base.html:142 templates/base.html:215
 msgid "Certificates"
 msgstr ""
 
-#: templates/base.html:117 templates/base.html:141 templates/base.html:213
+#: templates/base.html:118 templates/base.html:143 templates/base.html:216
+#: templates/site/header/contacts.html:4 templates/site/header/contacts.html:7
 msgid "Contacts"
 msgstr ""
 
-#: templates/base.html:297
+#: templates/base.html:300
 msgid "Making an order"
 msgstr ""
 
-#: templates/base.html:300
+#: templates/base.html:303
 msgid "Enter your contact details"
 msgstr ""
 
-#: templates/base.html:304 templates/site/sections/feedback.html:7
+#: templates/base.html:307 templates/profile/history-page.html:40
+#: templates/site/cart.html:27 templates/site/sections/feedback.html:7
 msgid "Name"
 msgstr ""
 
-#: templates/base.html:305 templates/site/sections/feedback.html:8
+#: templates/base.html:308 templates/site/sections/feedback.html:8
 msgid "Phone"
 msgstr ""
 
-#: templates/base.html:306 templates/site/sections/feedback.html:9
+#: templates/base.html:309 templates/profile/auth.html:12
+#: templates/site/sections/feedback.html:9
 msgid "Email"
 msgstr ""
 
-#: templates/base.html:308 templates/site/sections/feedback.html:17
+#: templates/base.html:311 templates/profile/forgot.html:15
+#: templates/site/sections/feedback.html:17
 msgid "Send"
 msgstr ""
 
+#: templates/profile/auth.html:10
+msgid "Authorization"
+msgstr ""
+
+#: templates/profile/auth.html:13
+msgid "Password"
+msgstr ""
+
+#: templates/profile/auth.html:16
+msgid "Remember me"
+msgstr ""
+
+#: templates/profile/auth.html:18
+msgid "Login"
+msgstr ""
+
+#: templates/profile/auth.html:19 templates/profile/forgot.html:9
+msgid "Forgot your password?"
+msgstr ""
+
+#: templates/profile/auth.html:20 templates/profile/forgot.html:17
+msgid "Sign up"
+msgstr ""
+
+#: templates/profile/forgot.html:13
+msgid ""
+"The control string for changing the password, as well as your registration "
+"data, will be sent to you by Email"
+msgstr ""
+
+#: templates/profile/forgot.html:16
+msgid "Sign in"
+msgstr ""
+
+#: templates/profile/history-page.html:5 templates/profile/history-page.html:13
+msgid "Purchase history"
+msgstr ""
+
+#: templates/profile/history-page.html:15
+msgid "Specify time interval"
+msgstr ""
+
+#: templates/profile/history-page.html:17
+msgid "Next"
+msgstr ""
+
+#: templates/profile/history-page.html:27 templates/site/cart.html:15
+msgid "Choose all"
+msgstr ""
+
+#: templates/profile/history-page.html:31 templates/site/cart.html:19
+msgid "Delete selected"
+msgstr ""
+
+#: templates/profile/history-page.html:42 templates/site/cart.html:28
+msgid "Price"
+msgstr ""
+
+#: templates/profile/history-page.html:43 templates/site/cart.html:29
+msgid "Quantity"
+msgstr ""
+
+#: templates/profile/history-page.html:44
+#: templates/profile/history-page.html:134 templates/site/cart.html:30
+#: templates/site/cart.html:85
+msgid "Total"
+msgstr ""
+
+#: templates/profile/history-page.html:114 templates/site/cart.html:65
+msgid "Your order"
+msgstr ""
+
+#: templates/profile/history-page.html:118 templates/site/cart.html:69
+msgid "Items selected"
+msgstr ""
+
+#: templates/profile/history-page.html:121 templates/site/cart.html:72
+msgid "pcs"
+msgstr ""
+
+#: templates/profile/history-page.html:126 templates/site/cart.html:77
+msgid "Order weight"
+msgstr ""
+
+#: templates/profile/history-page.html:129 templates/site/cart.html:80
+msgid "kg"
+msgstr ""
+
+#: templates/profile/history-page.html:140
+msgid "Repeat order"
+msgstr ""
+
+#: templates/site/cart.html:91
+msgid "Checkout"
+msgstr ""
+
+#: templates/site/cart.html:97
+msgid "Cart is empty"
+msgstr ""
+
 #: templates/site/catalog/product_category.html:8
-#: templates/site/header/projects.html:8 templates/site/project-single.html:8
+#: templates/site/header/projects.html:8 templates/site/parts.html:7
+#: templates/site/project-single.html:8
 msgid "Home"
 msgstr ""
 
 #: templates/site/catalog/product_category.html:9 templates/site/index.html:11
+#: templates/site/products.html:5
 msgid "Products"
 msgstr ""
 
@@ -123,18 +233,19 @@ msgstr ""
 
 #: templates/site/errors/404.html:10 templates/site/errors/500.html:11
 msgid "Go home"
-msgstr "Вернуться на главную"
+msgstr ""
 
 #: templates/site/errors/500.html:9
 msgid "Server error!"
-msgstr "Серверная ошибка!"
-
-#: templates/site/header/projects.html:9 templates/site/project-single.html:9
-msgid "Our projects"
 msgstr ""
 
-#: templates/site/header/projects.html:12 templates/site/project-single.html:13
-msgid "OUR PROJECTS"
+#: templates/site/header/contacts.html:70
+msgid "Download “Requisites.pdf”"
+msgstr ""
+
+#: templates/site/header/projects.html:9 templates/site/header/projects.html:12
+#: templates/site/project-single.html:9 templates/site/project-single.html:13
+msgid "Our projects"
 msgstr ""
 
 #: templates/site/header/projects.html:15
@@ -168,7 +279,20 @@ msgid "Equipment"
 msgstr ""
 
 #: templates/site/index.html:48 templates/site/index.html:49
+#: templates/site/parts.html:8
 msgid "Spare parts"
+msgstr ""
+
+#: templates/site/index.html:164
+msgid "certificate"
+msgstr ""
+
+#: templates/site/parts.html:11
+msgid "Spare parts for compressors"
+msgstr ""
+
+#: templates/site/parts.html:32
+msgid "Your request has been received"
 msgstr ""
 
 #: templates/site/sections/feedback.html:6
@@ -218,8 +342,6 @@ msgid "Got unexpected extra argument ({args})"
 msgid_plural "Got unexpected extra arguments ({args})"
 msgstr[0] ""
 msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
 
 #: venv/lib/python3.10/site-packages/click/core.py:1399
 msgid "DeprecationWarning: The command {name!r} is deprecated."
@@ -247,8 +369,6 @@ msgid "Takes {nargs} values but 1 was given."
 msgid_plural "Takes {nargs} values but {len} were given."
 msgstr[0] ""
 msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
 
 #: venv/lib/python3.10/site-packages/click/core.py:2734
 #, python-brace-format
@@ -331,8 +451,6 @@ msgid "Did you mean {possibility}?"
 msgid_plural "(Possible options: {possibilities})"
 msgstr[0] ""
 msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
 
 #: venv/lib/python3.10/site-packages/click/exceptions.py:261
 msgid "unknown error"
@@ -355,8 +473,6 @@ msgid "Option {name!r} requires an argument."
 msgid_plural "Option {name!r} requires {nargs} arguments."
 msgstr[0] ""
 msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
 
 #: venv/lib/python3.10/site-packages/click/shell_completion.py:316
 msgid "Shell completion is not supported for Bash versions older than 4.4."
@@ -403,16 +519,12 @@ msgid "{value!r} is not {choice}."
 msgid_plural "{value!r} is not one of {choices}."
 msgstr[0] ""
 msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
 
 #: venv/lib/python3.10/site-packages/click/types.py:387
 msgid "{value!r} does not match the format {format}."
 msgid_plural "{value!r} does not match the formats {formats}."
 msgstr[0] ""
 msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
 
 #: venv/lib/python3.10/site-packages/click/types.py:409
 msgid "{value!r} is not a valid {number_type}."
@@ -474,8 +586,6 @@ msgid "{len_type} values are required, but {len_value} was given."
 msgid_plural "{len_type} values are required, but {len_value} were given."
 msgstr[0] ""
 msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
 
 #: venv/lib/python3.10/site-packages/django/contrib/messages/apps.py:15
 msgid "Messages"

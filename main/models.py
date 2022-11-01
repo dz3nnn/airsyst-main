@@ -1,3 +1,4 @@
+from email.policy import default
 from django.db import models
 from mptt.models import MPTTModel, TreeForeignKey
 from django.utils.text import slugify
@@ -10,15 +11,55 @@ from django.urls import reverse
 
 
 SERVICE_CHOICES = (
-    ("MAINTENANCE", _("Обслуживание")),
-    ("REPAIR", _("Сервис")),
-    ("SELL", _("Продажи")),
+    ("MAINTENANCE", _("Maintenance")),
+    ("REPAIR", _("Repair")),
+    ("SELL", _("Sell")),
 )
 
 NO_IMAGE_URL = f"{settings.MEDIA_URL}category_images/no_image.jpg"
 
 
-class Category(MPTTModel):
+class SEOClass(models.Model):
+    title_by = models.CharField(
+        max_length=250, verbose_name="SEO заголовок by", blank=True, null=True
+    )
+    description_by = models.CharField(
+        max_length=250, verbose_name="SEO описание by", blank=True, null=True
+    )
+
+    title_ru = models.CharField(
+        max_length=250, verbose_name="SEO заголовок ru", blank=True, null=True
+    )
+    description_ru = models.CharField(
+        max_length=250, verbose_name="SEO описание ru", blank=True, null=True
+    )
+
+    title_eu = models.CharField(
+        max_length=250, verbose_name="SEO заголовок eu", blank=True, null=True
+    )
+    description_eu = models.CharField(
+        max_length=250, verbose_name="SEO описание eu", blank=True, null=True
+    )
+
+    title_ie = models.CharField(
+        max_length=250, verbose_name="SEO заголовок ie", blank=True, null=True
+    )
+    description_ie = models.CharField(
+        max_length=250, verbose_name="SEO описание ie", blank=True, null=True
+    )
+
+    title_kz = models.CharField(
+        max_length=250, verbose_name="SEO заголовок kz", blank=True, null=True
+    )
+    description_kz = models.CharField(
+        max_length=250, verbose_name="SEO описание kz", blank=True, null=True
+    )
+
+    class Meta:
+        abstract = True
+
+
+class Category(MPTTModel, SEOClass):
     name = models.CharField(max_length=200)
     image = models.ImageField(upload_to="category_images", default="no_image.jpg")
     slug = models.SlugField(editable=False, unique=True)
@@ -180,10 +221,11 @@ class Project_Image(models.Model):
 
 
 class Information(models.Model):
-    ru = tinymce_models.HTMLField(verbose_name="ru site", null=True, blank=True)
-    by = tinymce_models.HTMLField(verbose_name="by site", null=True, blank=True)
-    ie = tinymce_models.HTMLField(verbose_name="ie site", null=True, blank=True)
-    eu = tinymce_models.HTMLField(verbose_name="eu site", null=True, blank=True)
+    info_ru = tinymce_models.HTMLField(verbose_name="ru site", null=True, blank=True)
+    info_by = tinymce_models.HTMLField(verbose_name="by site", null=True, blank=True)
+    info_ie = tinymce_models.HTMLField(verbose_name="ie site", null=True, blank=True)
+    info_eu = tinymce_models.HTMLField(verbose_name="eu site", null=True, blank=True)
+    info_kz = tinymce_models.HTMLField(verbose_name="kz site", null=True, blank=True)
     description = models.CharField(
         max_length=250, verbose_name="Описание", null=True, blank=True
     )
@@ -217,7 +259,9 @@ class Equipment_Item(models.Model):
         null=True,
         blank=True,
     )
-    article = models.CharField(max_length=8, verbose_name="Артикул", blank=True)
+    article = models.CharField(
+        max_length=8, verbose_name="Артикул", blank=True, null=True
+    )
     price = models.DecimalField(
         max_digits=10,
         decimal_places=2,
@@ -294,7 +338,9 @@ class Equipment_Item(models.Model):
     @property
     def get_final_price(self):
         if self.price:
-            return self._calc_price(self.price)
+            discount = 0  # percent
+            price_with_discount = self.price * (100 - discount) / 100
+            return self._calc_price(price_with_discount)
         else:
             return _("On order")
 
@@ -422,6 +468,8 @@ class Certificate(models.Model):
         null=True,
         blank=True,
     )
+    flag_ru = models.BooleanField(verbose_name="Отображать на ru", default=False)
+    flag_en = models.BooleanField(verbose_name="Отображать на en", default=False)
 
     class Meta:
         verbose_name = "Сертификат"
@@ -429,3 +477,9 @@ class Certificate(models.Model):
 
     def __str__(self):
         return "%s" % (self.description)
+
+
+class Slider(models.Model):
+    title = models.CharField(max_length=250, verbose_name="Заголовок")
+    description = models.CharField(max_length=250, verbose_name="Текст")
+    image = models.ImageField(upload_to="slider-index", default="no_image.jpg")

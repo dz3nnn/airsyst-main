@@ -8,9 +8,18 @@ from django.contrib.auth.models import User
 from django.utils.translation import gettext as _
 from django.core.paginator import Paginator
 
-from main.models import Category, Equipment_Item, Option, OptionRelation, Project, Brand
-from .helps import apply_filter_for_equip
-from .utils import get_template_for_lang, message_to_managers
+from main.models import (
+    Category,
+    Equipment_Item,
+    Option,
+    OptionRelation,
+    Project,
+    Brand,
+    Slider,
+)
+from main.helps import apply_filter_for_equip
+from main.utils import get_template_for_lang, message_to_managers
+from main.filters import get_equipment_brands
 
 # Errors
 def page_404(request, exception=None):
@@ -72,16 +81,25 @@ def register_view(request):
 # Main
 def index_page(request):
     all_brands = Brand.objects.all()
-    equip_brands = Brand.objects.all()
+    equip_brands = get_equipment_brands()
+    context = {
+        "all_brands": all_brands,
+        "equip_brands": equip_brands,
+        "sliders": Slider.objects.all(),
+    }
     return render(
         request,
         "site/index.html",
-        {"all_brands": all_brands, "equip_brands": equip_brands},
+        context,
     )
 
 
 def about_page(request):
     return render(request, "site/header/about.html")
+
+
+def dealers_view(request):
+    return render(request, "site/header/dealers.html")
 
 
 def contacts_page(request):
@@ -159,12 +177,12 @@ def product_catalog_view(request, category_slug):
     )
     options = Option.objects.filter(pk__in=relations)
 
-    items = apply_filter_for_equip(request, items)
+    filtered_items = apply_filter_for_equip(request, items)
 
-    paginator = Paginator(items, 1)
+    paginator = Paginator(filtered_items, 1)
     page_number = request.GET.get("page")
     page_obj = paginator.get_page(page_number)
-    
+
     context = {
         "category": category,
         "page_obj": page_obj,

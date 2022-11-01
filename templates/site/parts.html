@@ -1,13 +1,14 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load i18n %}
 {% block title %}AirSyst - SPARE PARTS FOR COMPRESSORS{% endblock %}
 {% block content %}
 <div class="bread-crumbs wrap">
-    <a href="/" class="bread-crumbs__item">Home</a>
-    <div class="bread-crumbs__item">Spare parts</div>
+    <a href="/" class="bread-crumbs__item">{% translate 'Home' %}</a>
+    <div class="bread-crumbs__item">{% translate 'Spare parts' %}</div>
 </div>
 <section class="spare-parts wrap">
-    <h1 class="title">SPARE PARTS FOR COMPRESSORS</h1>
+    <h1 class="title">{% translate 'Spare parts for compressors' %}</h1>
     {% if all_brands %}
     <div class="spare-parts__items">
         {% for brand in all_brands %}
@@ -28,7 +29,7 @@
     </div>
     <img class="lazyload" data-src="{% static 'img/icons/success.svg' %}" alt="">
     <div class="success__text">
-        Your request has been received
+        {% translate 'Your request has been received' %}
     </div>
 </div>
 {% endblock %}
